@@ -54,23 +54,6 @@
             gap: 8px;
             white-space: nowrap;
             overflow: hidden;
-            position: relative;
-        }
-
-        .security-ticker::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--security-green), var(--gold-color), transparent);
-            animation: radarScan 4s linear infinite;
-        }
-
-        @keyframes radarScan {
-            0% { right: -100%; }
-            100% { right: 100%; }
         }
 
         .security-ticker span {
@@ -80,34 +63,15 @@
             gap: 4px;
         }
 
-        /* الهيدر المتجاوب الثابت مع شعار خلفية مائي رقيق جداً */
+        /* الهيدر (ثبيته في مكانه الطبيعي وبدون حركة مزعجة مع التصفح) */
         header {
             background-color: var(--primary-color);
             color: var(--white);
-            position: fixed;
-            top: 27px;
-            left: 0;
             width: 100%;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             border-bottom: 2px solid var(--gold-color);
-            overflow: hidden;
-        }
-
-        /* الشعار المائي الخفيف الخلفي في الهيدر */
-        header::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 20px;
-            transform: translateY(-50%);
-            width: 120px;
-            height: 120px;
-            background: url('logo.png') no-repeat center center;
-            background-size: contain;
-            opacity: 0.04; /* خفيف ورقيق جداً في الخلفية */
-            pointer-events: none;
-            z-index: 0;
+            position: relative;
+            z-index: 100;
         }
 
         .navbar {
@@ -116,9 +80,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 15px;
-            position: relative;
-            z-index: 1;
+            padding: 10px 15px;
         }
 
         .logo-area {
@@ -130,14 +92,18 @@
             user-select: none;
         }
 
+        /* تعديل الشعار فوق على اليمين من غير خلفية ومندمج بشكل رقيق */
         .logo-area img {
-            height: 42px; /* تم تكبير الشعار الرئيسي قليلاً ليكون واضحاً ومميزاً */
+            height: 38px;
             width: auto;
             object-fit: contain;
+            background: transparent;
+            mix-blend-mode: luminosity; /* لدمج الألوان مع الخلفية بأناقة */
+            opacity: 0.95;
         }
 
         .logo-area h1 {
-            font-size: 0.98rem;
+            font-size: 0.95rem;
             color: var(--gold-color);
             font-weight: 900;
             white-space: nowrap;
@@ -174,29 +140,14 @@
             white-space: nowrap;
         }
 
-        /* الواجهة الرئيسية (Hero) مع شعار مائي خلفي رقيق */
+        /* الواجهة الرئيسية (Hero) */
         .hero {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
-            padding: 135px 15px 50px;
+            padding: 55px 15px 50px;
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 350px;
-            height: 350px;
-            background: url('logo.png') no-repeat center center;
-            background-size: contain;
-            opacity: 0.03; /* شفاف وخفيف جداً في الخلفية */
-            pointer-events: none;
-            z-index: 0;
         }
 
         .hero-container {
@@ -436,7 +387,7 @@
             color: var(--white);
         }
 
-        /* قسم عن الشركة والختم (مضبوط تماماً بدون مساحات زائدة) */
+        /* عن الشركة والختم */
         .about-section {
             background: var(--white);
             border-radius: 16px;
@@ -490,8 +441,7 @@
 
         @media(max-width: 768px) {
             .security-ticker { font-size: 0.65rem; padding: 4px 6px; }
-            header { top: 24px; }
-            .hero { padding: 115px 12px 40px; }
+            .hero { padding: 45px 12px 40px; }
             .portfolio-grid { grid-template-columns: 1fr; gap: 12px; }
             .portfolio-card.full-width { grid-column: span 1; flex-direction: column; text-align: center; }
             .nav-links { display: none; }
@@ -591,7 +541,7 @@
             margin-top: 4px;
         }
 
-        /* لوحة التحكم الاحترافية (إدارة شاملة وترقيات وطرد) */
+        /* لوحة التحكم الاحترافية */
         #adminDashboardModal .modal-content {
             max-width: 1000px;
             background: #0b1320;
@@ -693,7 +643,7 @@
             font-weight: 700;
         }
 
-        /* التواصل والفوتر */
+        /* التواصل والفوتر (مع الرقم الأرضي بشكل شيك ومميز جداً) */
         .contact-box {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
@@ -715,22 +665,34 @@
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
             margin-top: 18px;
         }
 
         .contact-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 10px 12px;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 12px 16px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             color: var(--white);
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.84rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--gold-color);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .contact-item i {
+            color: var(--gold-color);
+            font-size: 1rem;
         }
 
         footer {
@@ -756,12 +718,12 @@
         حالة الطوارئ: <span><i class="fa-solid fa-circle" style="font-size: 6px;"></i> تأمين مشدد ومنظومة حراسة ذكية تعمل على مدار الساعة</span>
     </div>
 
-    <!-- الهيدر -->
+    <!-- الهيدر (ثابت ومن غير حركة مزعجة مع التصفح) -->
     <header>
         <div class="navbar">
             <a href="#hero" class="logo-area" id="logoClicker">
-                <img src="logo.png" alt="شعار فورت لاين">
-                <h1>فورت لاين للأمن</h1>
+                <img src="logo.png" alt="شعار شركة فورت لاين للحراسة">
+                <h1>شركة فورت لاين للحراسة</h1>
             </a>
             <ul class="nav-links">
                 <li><a href="#hero">الرئيسية</a></li>
@@ -792,7 +754,7 @@
     <section id="portfolio">
         <div class="section-title">
             <h3>سابقة أعمالنا الأمنية</h3>
-            <p>ثقة أصحاب المنشآت.. دروع حماية تفخر بها شركة فورت لاين</p>
+            <p>ثقة أصحاب المنشآت.. دروع حماية تفخر بها شركة فورت لاين للحراسة</p>
         </div>
 
         <div class="portfolio-grid">
@@ -859,7 +821,7 @@
                 <button class="btn-gold" style="margin-top: 10px; padding: 6px 14px; font-size: 0.8rem;" onclick="openAboutModal(event)">قراءة النبذة التفصيلية</button>
             </div>
             <div class="about-seal">
-                <img src="seal.png" alt="ختم شركة فورت لاين الرسمي">
+                <img src="seal.png" alt="ختم شركة فورت لاين للحراسة الرسمي">
                 <span style="font-size: 0.72rem; color: #64748b; margin-top: 4px; font-weight: 700;">ختم الاعتماد الرسمي</span>
             </div>
         </div>
@@ -869,9 +831,9 @@
     <div id="aboutModal" class="modal-overlay">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="color: var(--primary-color); margin-bottom: 10px; font-weight: 900; font-size: 1.1rem;"><i class="fa-solid fa-shield-dog" style="color:var(--gold-color);"></i> نبذة تفصيلية عن فورت لاين</h3>
+            <h3 style="color: var(--primary-color); margin-bottom: 10px; font-weight: 900; font-size: 1.1rem;"><i class="fa-solid fa-shield-dog" style="color:var(--gold-color);"></i> نبذة تفصيلية عن شركة فورت لاين للحراسة</h3>
             <p style="color: #475569; margin-bottom: 10px; font-size: 0.84rem; line-height: 1.6;">
-                تأسست شركة فورت لاين لتكون العلامة الفارقة في مجال الأمن والحراسات الخاصة وتأمين المنشآت الحيوية. نحن نؤمن بأن الأمان منظومة متكاملة تبدأ بدراسة المخاطر وتنتهي بالسيطرة التامة.
+                تأسست شركة فورت لاين للحراسة لتكون العلامة الفارقة في مجال الأمن والحراسات الخاصة وتأمين المنشآت الحيوية. نحن نؤمن بأن الأمان منظومة متكاملة تبدأ بدراسة المخاطر وتنتهي بالسيطرة التامة.
             </p>
         </div>
     </div>
@@ -880,7 +842,7 @@
     <div id="jobModal" class="modal-overlay">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="color: var(--primary-color); margin-bottom: 4px; text-align: center; font-weight: 900; font-size: 1.1rem;"><i class="fa-solid fa-user-lock" style="color:var(--gold-color);"></i> انضم إلى فريق فورت لاين</h3>
+            <h3 style="color: var(--primary-color); margin-bottom: 4px; text-align: center; font-weight: 900; font-size: 1.1rem;"><i class="fa-solid fa-user-lock" style="color:var(--gold-color);"></i> انضم إلى فريق شركة فورت لاين للحراسة</h3>
             <p style="text-align: center; color: #64748b; margin-bottom: 12px; font-size: 0.78rem;">ادخل رقمك القومي وسيقوم النظام الذكي بتحليل البيانات أوتوماتيكياً</p>
             
             <form id="applicantForm" onsubmit="submitApplication(event)">
@@ -926,7 +888,7 @@
         <div class="modal-content" style="max-width: 340px; text-align: center;">
             <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
             <h3 style="color: var(--primary-color); margin-bottom: 6px; font-weight: 900; font-size: 1.1rem;"><i class="fa-solid fa-lock" style="color: var(--gold-color);"></i> دخول الإدارة</h3>
-            <p style="color: #64748b; font-size: 0.76rem; margin-bottom: 12px;">لوحة تحكم شركة فورت لاين السرية</p>
+            <p style="color: #64748b; font-size: 0.76rem; margin-bottom: 12px;">لوحة تحكم شركة فورت لاين للحراسة</p>
             <form onsubmit="adminLogin(event)">
                 <div class="form-group" style="text-align: right;">
                     <label>اسم المستخدم</label>
@@ -941,7 +903,7 @@
         </div>
     </div>
 
-    <!-- نافذة لوحة التحكم مع صلاحيات كاملة (ترقية - تنزيل رتبه - طرد) -->
+    <!-- نافذة لوحة التحكم مع صلاحيات كاملة -->
     <div id="adminDashboardModal" class="modal-overlay">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
@@ -990,19 +952,23 @@
         </div>
     </div>
 
-    <!-- التواصل -->
+    <!-- التواصل (مع إرجاع الرقم الأرضي والمحمول بشكل شيك جداً) -->
     <section id="contact">
         <div class="contact-box">
             <h3><i class="fa-solid fa-headset" style="color:var(--gold-color);"></i> تواصل معنا أو اطلب خطة تأمين منشأتك</h3>
-            <p>يسعدنا تلقي طلباتكم وحماية منشاتكم على مدار الساعة</p>
+            <p>يسعدنا تلقي طلباتكم وحماية منشاتكم على مدار الساعة عبر قنوات الاتصال الرسمية</p>
             <div class="contact-info">
                 <a href="https://maps.google.com/?q=كفر+الشيخ" target="_blank" class="contact-item">
                     <i class="fa-solid fa-location-dot"></i>
                     <span>أبراج الصيانة - كفر الشيخ</span>
                 </a>
+                <a href="tel:0472333333" class="contact-item">
+                    <i class="fa-solid fa-phone-office"></i>
+                    <span>التليفون الأرضي: 0472333333</span>
+                </a>
                 <a href="tel:01080800759" class="contact-item">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>01080800759</span>
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <span>المحمول / واتساب: 01080800759</span>
                 </a>
             </div>
         </div>
@@ -1010,7 +976,7 @@
 
     <!-- الفوتر -->
     <footer>
-        <p>جميع الحقوق محفوظة ©️ 2026 <span>شركة فورت لاين للحراسة والأمن</span> | الثقة والأمان غايتنا.</p>
+        <p>جميع الحقوق محفوظة ©️ 2026 <span>شركة فورت لاين للحراسة</span> | الثقة والأمان غايتنا.</p>
     </footer>
 
     <!-- السكريبت -->
