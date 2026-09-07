@@ -18,6 +18,7 @@
             --light-bg: #f4f6f9;
             --text-color: #2c3e50;
             --white: #ffffff;
+            --security-green: #10b981;
         }
 
         * {
@@ -36,17 +37,42 @@
             -webkit-text-size-adjust: 100%;
         }
 
+        /* شريط الأمن الحي العلوي */
+        .security-ticker {
+            background: #03080f;
+            color: var(--gold-color);
+            font-size: 0.72rem;
+            padding: 5px 10px;
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .security-ticker span {
+            color: var(--security-green);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
         /* الهيدر المتجاوب */
         header {
             background-color: var(--primary-color);
             color: var(--white);
             position: fixed;
-            top: 0;
+            top: 25px; /* مسافة شريط الأمن */
             left: 0;
             width: 100%;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
             border-bottom: 2px solid var(--gold-color);
+            transition: top 0.3s;
         }
 
         .navbar {
@@ -55,7 +81,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 15px;
+            padding: 8px 15px;
         }
 
         .logo-area {
@@ -68,14 +94,14 @@
         }
 
         .logo-area img {
-            height: 38px;
+            height: 36px;
             width: auto;
             object-fit: contain;
             border-radius: 4px;
         }
 
         .logo-area h1 {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             color: var(--gold-color);
             font-weight: 900;
             white-space: nowrap;
@@ -92,7 +118,7 @@
             color: var(--white);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             transition: color 0.3s;
         }
 
@@ -107,7 +133,7 @@
             border-radius: 6px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             box-shadow: 0 3px 8px rgba(212, 175, 55, 0.3);
             white-space: nowrap;
         }
@@ -116,30 +142,50 @@
         .hero {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
-            padding: 120px 15px 60px;
+            padding: 135px 15px 60px; /* مسافة إضافية عشان الهيدر والشريط */
             text-align: center;
             position: relative;
+            overflow: hidden;
+        }
+
+        /* خلفية أمنية جمالية بشعار الدرع */
+        .hero::before {
+            content: "\f3ed";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            font-size: 18rem;
+            color: rgba(255, 255, 255, 0.02);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
         }
 
         .hero-container {
             max-width: 850px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             background: rgba(212, 175, 55, 0.15);
             color: var(--gold-color);
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 20px;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             font-weight: 700;
             margin-bottom: 12px;
             border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
         .hero h2 {
-            font-size: 1.7rem;
+            font-size: 1.65rem;
             margin-bottom: 12px;
             color: var(--gold-color);
             font-weight: 900;
@@ -147,7 +193,7 @@
         }
 
         .hero p {
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             color: #d1d8e0;
             margin-bottom: 20px;
             padding: 0 5px;
@@ -167,7 +213,7 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
             display: inline-block;
             white-space: nowrap;
@@ -181,7 +227,7 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             display: inline-block;
             white-space: nowrap;
         }
@@ -200,14 +246,14 @@
         }
 
         .section-title h3 {
-            font-size: 1.5rem;
+            font-size: 1.45rem;
             color: var(--primary-color);
             margin-bottom: 6px;
             font-weight: 900;
         }
 
         .section-title p {
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             color: #64748b;
         }
 
@@ -251,7 +297,7 @@
         }
 
         .portfolio-card h4 {
-            font-size: 1.02rem;
+            font-size: 1rem;
             margin-bottom: 6px;
             color: var(--primary-color);
             font-weight: 800;
@@ -263,8 +309,18 @@
             line-height: 1.5;
         }
 
-        /* تحسينات الموبايل الحاسمة لضبط الفراغات والشكل */
+        /* تحسينات الموبايل الحاسمة */
         @media(max-width: 768px) {
+            .security-ticker {
+                font-size: 0.65rem;
+                padding: 4px 6px;
+            }
+            header {
+                top: 22px;
+            }
+            .hero {
+                padding: 115px 12px 50px;
+            }
             .portfolio-grid {
                 grid-template-columns: 1fr;
                 gap: 12px;
@@ -278,10 +334,7 @@
                 display: none; 
             }
             .hero h2 {
-                font-size: 1.45rem;
-            }
-            .hero {
-                padding: 100px 12px 50px;
+                font-size: 1.35rem;
             }
             .about-section {
                 padding: 20px 15px !important;
@@ -306,6 +359,7 @@
             flex-wrap: wrap;
             justify-content: space-between;
             margin-top: 25px;
+            border-right: 5px solid var(--gold-color);
         }
 
         .about-content {
@@ -315,13 +369,13 @@
 
         .about-content h3 {
             color: var(--primary-color);
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             margin-bottom: 10px;
             font-weight: 900;
         }
 
         .about-content p {
-            font-size: 0.86rem;
+            font-size: 0.85rem;
             color: #475569;
             line-height: 1.6;
         }
@@ -339,7 +393,7 @@
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
         }
 
-        /* النوافذ المنبثقة (Modals) للموبايل */
+        /* النوافذ المنبثقة (Modals) */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -399,7 +453,7 @@
             padding: 10px 12px;
             border: 1px solid #cbd5e1;
             border-radius: 8px;
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             background: #f8fafc;
             color: var(--text-color);
         }
@@ -422,14 +476,14 @@
             padding: 11px;
             border: none;
             border-radius: 8px;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-weight: 800;
             cursor: pointer;
             width: 100%;
             margin-top: 4px;
         }
 
-        /* لوحة التحكم السرية للموبايل */
+        /* لوحة التحكم */
         #adminDashboardModal .modal-content {
             max-width: 950px;
             background: #0b1320;
@@ -493,7 +547,7 @@
             background: rgba(255,255,255,0.03);
         }
 
-        /* قسم التواصل */
+        /* التواصل */
         .contact-box {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
@@ -506,13 +560,13 @@
 
         .contact-box h3 {
             color: var(--gold-color);
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             margin-bottom: 8px;
             font-weight: 900;
         }
 
         .contact-box p {
-            font-size: 0.86rem;
+            font-size: 0.85rem;
             color: #cbd5e1;
         }
 
@@ -554,12 +608,18 @@
 </head>
 <body>
 
+    <!-- شريط حالة التأمين الحي العلوي -->
+    <div class="security-ticker">
+        <i class="fa-solid fa-shield-halved" style="color: var(--gold-color);"></i>
+        حالة الطوارئ: <span><i class="fa-solid fa-circle" style="font-size: 6px;"></i> تأمين مشدد ومنظومة حراسة ذكية تعمل على مدار الساعة</span>
+    </div>
+
     <!-- الهيدر -->
     <header>
         <div class="navbar">
             <a href="#hero" class="logo-area" id="logoClicker">
                 <img src="logo.png" alt="شعار فورت لاين">
-                <h1>فورت لاين</h1>
+                <h1>فورت لاين للأمن</h1>
             </a>
             <ul class="nav-links">
                 <li><a href="#hero">الرئيسية</a></li>
@@ -567,21 +627,21 @@
                 <li><a href="#about" onclick="openAboutModal(event)">نبذة عن الشركة</a></li>
                 <li><a href="#contact">اتصل بنا</a></li>
             </ul>
-            <a href="#" class="cta-btn-nav" onclick="openJobModal(event)">انضم لفريق العمل</a>
+            <a href="#" class="cta-btn-nav" onclick="openJobModal(event)"><i class="fa-solid fa-user-shield"></i> انضم لفريق الحراسة</a>
         </div>
     </header>
 
     <!-- الواجهة الرئيسية -->
     <section id="hero" class="hero">
         <div class="hero-container">
-            <span class="hero-badge">الرائدة في الحراسات الخاصة وتأمين المنشآت</span>
+            <span class="hero-badge"><i class="fa-solid fa-certificate"></i> معتمدون رسمياً لتأمين المنشآت الحيوية والخاصة</span>
             <h2>الثقة والأمان غايتنا</h2>
             <p>
-                نقدم أحدث الأساليب ورسم الخطط الأمنية المتكاملة لحماية منشأتك تحت إشراف نخبة من القادة والمتخصصين.
+                نقدم أحدث الأساليب ورسم الخطط الأمنية المتكاملة لحماية منشأتك تحت إشراف نخبة من القادة والمتخصصين في الحراسات الخاصة.
             </p>
             <div class="hero-actions">
-                <a href="#contact" class="btn-gold">اطلب خطة تأمين منشأتك</a>
-                <a href="#" class="btn-outline" onclick="openJobModal(event)">انضم لفريق الحراسة</a>
+                <a href="#contact" class="btn-gold"><i class="fa-solid fa-file-shield"></i> اطلب خطة تأمين منشأتك</a>
+                <a href="#" class="btn-outline" onclick="openJobModal(event)"><i class="fa-solid fa-id-card"></i> تقديم طلب فرد أمن</a>
             </div>
         </div>
     </section>
@@ -589,8 +649,8 @@
     <!-- سابقة الأعمال -->
     <section id="portfolio">
         <div class="section-title">
-            <h3>سابقة أعمالنا</h3>
-            <p>ثقة أصحاب المنشآت.. وقائع تشهد على تميزنا وأماننا</p>
+            <h3>سابقة أعمالنا الأمنية</h3>
+            <p>ثقة أصحاب المنشآت.. دروع حماية تفخر بها شركة فورت لاين</p>
         </div>
 
         <div class="portfolio-grid">
@@ -610,7 +670,7 @@
                 <p>تأمين المصانع والمستودعات وضبط عمليات الشحن.</p>
             </div>
             <div class="portfolio-card full-width">
-                <i class="fa-solid fa-calendar-days"></i>
+                <i class="fa-solid fa-shield-cat"></i>
                 <div>
                     <h4>تأمين الفعاليات والمؤتمرات الكبرى</h4>
                     <p>إعداد وتنفيذ خطط التأمين الميداني للاحتفالات والمعارض الكبرى باستخدام أحدث التقنيات وفرق التدخل السريع.</p>
@@ -621,9 +681,9 @@
         <!-- عن الشركة والختم -->
         <div class="about-section" id="about">
             <div class="about-content">
-                <h3>معايير التميز والاحترافية</h3>
+                <h3>معايير التميز والاحترافية الأمنية</h3>
                 <p>
-                    تُعد شركة فورت لاين للحراسة صرحاً رائداً يدمج بين الخبرات البشرية والأمنية المؤهلة، وتوظيف التقنيات لضمان تحقيق أعلى معايير الجودة والأمان.
+                    تُعد شركة فورت لاين للحراسة صرحاً رائداً يدمج بين الخبرات البشرية والأمنية المؤهلة، وتوظيف التقنيات لضمان تحقيق أعلى معايير الجودة والأمان لحمايتكم.
                 </p>
                 <button class="btn-gold" style="margin-top: 10px; padding: 6px 14px; font-size: 0.8rem;" onclick="openAboutModal(event)">قراءة النبذة التفصيلية</button>
             </div>
@@ -638,7 +698,7 @@
     <div id="aboutModal" class="modal-overlay">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="color: var(--primary-color); margin-bottom: 10px; font-weight: 900; font-size: 1.1rem;">نبذة تفصيلية عن فورت لاين</h3>
+            <h3 style="color: var(--primary-color); margin-bottom: 10px; font-weight: 900; font-size: 1.1rem;"><i class="fa-solid fa-shield-dog" style="color:var(--gold-color);"></i> نبذة تفصيلية عن فورت لاين</h3>
             <p style="color: #475569; margin-bottom: 10px; font-size: 0.84rem; line-height: 1.6;">
                 تأسست شركة فورت لاين لتكون العلامة الفارقة في مجال الأمن والحراسات الخاصة وتأمين المنشآت الحيوية. نحن نؤمن بأن الأمان منظومة متكاملة تبدأ بدراسة المخاطر وتنتهي بالسيطرة التامة.
             </p>
@@ -652,7 +712,7 @@
     <div id="jobModal" class="modal-overlay">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="color: var(--primary-color); margin-bottom: 4px; text-align: center; font-weight: 900; font-size: 1.1rem;">انضم إلى فريق فورت لاين</h3>
+            <h3 style="color: var(--primary-color); margin-bottom: 4px; text-align: center; font-weight: 900; font-size: 1.1rem;"><i class="fa-solid fa-user-lock" style="color:var(--gold-color);"></i> انضم إلى فريق فورت لاين</h3>
             <p style="text-align: center; color: #64748b; margin-bottom: 12px; font-size: 0.78rem;">ادخل رقمك القومي وسيقوم النظام الذكي بتحليل البيانات أوتوماتيكياً</p>
             
             <form id="applicantForm" onsubmit="submitApplication(event)">
@@ -766,7 +826,7 @@
     <!-- التواصل -->
     <section id="contact">
         <div class="contact-box">
-            <h3>تواصل معنا أو اطلب خطة تأمين منشأتك</h3>
+            <h3><i class="fa-solid fa-headset" style="color:var(--gold-color);"></i> تواصل معنا أو اطلب خطة تأمين منشأتك</h3>
             <p>يسعدنا تلقي طلباتكم وحماية منشاتكم على مدار الساعة</p>
             <div class="contact-info">
                 <a href="https://maps.google.com/?q=كفر+الشيخ" target="_blank" class="contact-item">
@@ -787,7 +847,7 @@
 
     <!-- الفوتر -->
     <footer>
-        <p>جميع الحقوق محفوظة ©️ 2026 <span>شركة فورت لاين للحراسة</span> | الثقة والأمان غايتنا.</p>
+        <p>جميع الحقوق محفوظة ©️ 2026 <span>شركة فورت لاين للحراسة والأمن</span> | الثقة والأمان غايتنا.</p>
     </footer>
 
     <!-- السكريبت -->
