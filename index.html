@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>شركة فورت لاين للحراسة | الثقة والأمان غايتنا</title>
     <!-- خط Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -27,7 +27,6 @@
             padding: 0;
             font-family: 'Cairo', sans-serif;
             scroll-behavior: smooth;
-            /* منع تحديد النص المزعج والتكبير العشوائي على الموبايل */
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -36,15 +35,14 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
-            -webkit-text-size-adjust: 100%;
         }
 
-        /* شريط الأمن الحي العلوي */
+        /* شريط الأمن الحي العلوي مع تأثير الرادار الأمني الجميل */
         .security-ticker {
             background: #03080f;
             color: var(--gold-color);
             font-size: 0.72rem;
-            padding: 5px 10px;
+            padding: 6px 10px;
             text-align: center;
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             font-weight: 700;
@@ -54,6 +52,24 @@
             gap: 8px;
             white-space: nowrap;
             overflow: hidden;
+            position: relative;
+        }
+
+        /* لمسة أمنية تفاعلية: خط رادار متحرك */
+        .security-ticker::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--security-green), var(--gold-color), transparent);
+            animation: radarScan 4s linear infinite;
+        }
+
+        @keyframes radarScan {
+            0% { right: -100%; }
+            100% { right: 100%; }
         }
 
         .security-ticker span {
@@ -68,7 +84,7 @@
             background-color: var(--primary-color);
             color: var(--white);
             position: fixed;
-            top: 25px;
+            top: 27px;
             left: 0;
             width: 100%;
             z-index: 1000;
@@ -309,14 +325,13 @@
             line-height: 1.5;
         }
 
-        /* تحسينات الموبايل لمنع التكقيم والتعليق */
         @media(max-width: 768px) {
             .security-ticker {
                 font-size: 0.65rem;
                 padding: 4px 6px;
             }
             header {
-                top: 22px;
+                top: 24px;
             }
             .hero {
                 padding: 115px 12px 50px;
@@ -341,13 +356,9 @@
                 flex-direction: column;
                 text-align: center;
             }
-            .about-seal img {
-                width: 100px !important;
-                height: 100px !important;
-            }
         }
 
-        /* قسم عن الشركة والختم */
+        /* قسم عن الشركة والختم (تم تكبير الختم بوضوح) */
         .about-section {
             background: var(--white);
             border-radius: 16px;
@@ -387,10 +398,15 @@
         }
 
         .about-seal img {
-            width: 110px;
-            height: 110px;
+            width: 150px; /* تم التكبير ليصبح بارزاً وواضحاً */
+            height: 150px; /* تم التكبير ليصبح بارزاً وواضحاً */
             object-fit: contain;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
+            transition: transform 0.3s ease;
+        }
+
+        .about-seal img:hover {
+            transform: scale(1.05);
         }
 
         /* النوافذ المنبثقة (Modals) */
@@ -448,13 +464,12 @@
             font-size: 0.84rem;
         }
 
-        /* منع التكبير التلقائي في الموبايل عند التركيز على الحقول (Font-size >= 16px) */
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 11px 12px;
             border: 1px solid #cbd5e1;
             border-radius: 8px;
-            font-size: 1rem; 
+            font-size: 0.95rem; 
             background: #f8fafc;
             color: var(--text-color);
             outline: none;
@@ -563,6 +578,21 @@
             border-radius: 14px;
             margin-top: 35px;
             border: 1px solid rgba(212,175,55,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* إضافة عنصر زخرفي أمني خلفي */
+        .contact-box::before {
+            content: "\f023";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            font-size: 10rem;
+            color: rgba(212, 175, 55, 0.03);
+            bottom: -20px;
+            left: 20px;
+            pointer-events: none;
         }
 
         .contact-box h3 {
@@ -615,7 +645,7 @@
 </head>
 <body>
 
-    <!-- شريط حالة التأمين الحي العلوي -->
+    <!-- شريط حالة التأمين الحي مع تأثير رادار المسح الأمني -->
     <div class="security-ticker">
         <i class="fa-solid fa-shield-halved" style="color: var(--gold-color);"></i>
         حالة الطوارئ: <span><i class="fa-solid fa-circle" style="font-size: 6px;"></i> تأمين مشدد ومنظومة حراسة ذكية تعمل على مدار الساعة</span>
@@ -685,7 +715,7 @@
             </div>
         </div>
 
-        <!-- عن الشركة والختم -->
+        <!-- عن الشركة والختم (بحجم أكبر وبارز) -->
         <div class="about-section" id="about">
             <div class="about-content">
                 <h3>معايير التميز والاحترافية الأمنية</h3>
@@ -696,7 +726,7 @@
             </div>
             <div class="about-seal">
                 <img src="seal.png" alt="ختم شركة فورت لاين الرسمي">
-                <p style="font-size: 0.72rem; color: #64748b; margin-top: 4px; font-weight: 700;">معتمدة رسمياً | Since 2024</p>
+                <p style="font-size: 0.75rem; color: #64748b; margin-top: 6px; font-weight: 700;">معتمدة رسمياً | Since 2024</p>
             </div>
         </div>
     </section>
@@ -760,7 +790,7 @@
         </div>
     </div>
 
-    <!-- نافذة تسجيل دخول الإدارة (فارغة ومؤمنة تماماً) -->
+    <!-- نافذة تسجيل دخول الإدارة -->
     <div id="adminLoginModal" class="modal-overlay">
         <div class="modal-content" style="max-width: 340px; text-align: center;">
             <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
@@ -866,7 +896,6 @@
             logoClicks++;
             if (logoClicks === 4) {
                 logoClicks = 0;
-                // تفريغ الحقول حماية للسرية عند فتح اللوحة
                 document.getElementById('adminUser').value = '';
                 document.getElementById('adminPass').value = '';
                 document.getElementById('adminLoginModal').style.display = 'flex';
