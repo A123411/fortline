@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>شركة فورت لاين للحراسة | الثقة والأمان غايتنا</title>
-    <!-- استدعاء خط Cairo للعربية -->
+    <!-- استدعاء خط Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- استدعاء مكتبة أيقونات FontAwesome -->
+    <!-- استدعاء أيقونات FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -34,7 +34,7 @@
             line-height: 1.6;
         }
 
-        /* الهيدر والقائمة */
+        /* الهيدر والناڤيجيشن */
         header {
             background-color: var(--primary-color);
             color: var(--white);
@@ -44,6 +44,7 @@
             width: 100%;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            border-bottom: 2px solid var(--gold-color);
         }
 
         .navbar {
@@ -52,22 +53,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 12px 20px;
         }
 
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .logo-area img {
-            height: 45px;
+            height: 50px;
             object-fit: contain;
+            border-radius: 5px;
         }
 
         .logo-area h1 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--gold-color);
             font-weight: 900;
         }
@@ -89,9 +91,9 @@
             color: var(--gold-color);
         }
 
-        .cta-btn {
-            background-color: var(--accent-color);
-            color: var(--white);
+        .cta-btn-nav {
+            background-color: var(--gold-color);
+            color: var(--primary-color);
             padding: 8px 18px;
             border-radius: 5px;
             text-decoration: none;
@@ -99,18 +101,16 @@
             transition: background 0.3s;
         }
 
-        .cta-btn:hover {
-            background-color: #e55a00;
+        .cta-btn-nav:hover {
+            background-color: #e6c547;
         }
 
-        /* الواجهة الرئيسية (Hero Section) */
+        /* الواجهة الرئيسية */
         .hero {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
-            padding: 160px 20px 100px;
+            padding: 160px 20px 80px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
         .hero-container {
@@ -123,32 +123,67 @@
         }
 
         .hero-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 2.6rem;
+            margin-bottom: 15px;
             color: var(--gold-color);
+            font-weight: 900;
         }
 
         .hero-content p {
-            font-size: 1.15rem;
-            max-width: 800px;
+            font-size: 1.2rem;
+            max-width: 850px;
             margin: 0 auto 30px;
             color: #e0e0e0;
         }
 
-        .hero-images {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
+        .hero-banner-img {
+            width: 100%;
+            max-width: 900px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            border: 2px solid var(--gold-color);
+            margin-top: 15px;
         }
 
-        .hero-images img {
-            max-width: 350px;
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .btn-main {
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-main:hover {
+            background-color: #e55a00;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
             border: 2px solid var(--gold-color);
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: background 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--gold-color);
+            color: var(--primary-color);
         }
 
         /* الأقسام العامة */
@@ -164,9 +199,10 @@
         }
 
         .section-title h3 {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             color: var(--primary-color);
             margin-bottom: 10px;
+            font-weight: 800;
         }
 
         .section-title p {
@@ -187,7 +223,7 @@
             background: var(--white);
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             border-top: 4px solid var(--gold-color);
             transition: transform 0.3s;
         }
@@ -213,8 +249,8 @@
             background-color: var(--secondary-color);
             color: var(--white);
             padding: 50px 20px;
-            margin: 40px 0;
-            border-radius: 10px;
+            margin: 50px 0;
+            border-radius: 12px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 30px;
@@ -222,17 +258,19 @@
         }
 
         .metric-box h4 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--gold-color);
             margin-bottom: 10px;
+            font-weight: 900;
         }
 
-        /* قسم التوظيف (انضم إلينا) */
+        /* قسم انضم إلينا والتوظيف */
         .join-section {
             background-color: var(--white);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 40px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #eaeaea;
         }
 
         .features-list {
@@ -255,13 +293,13 @@
             font-size: 1.1rem;
         }
 
-        /* نموذج التقديم */
+        /* نموذج التقديم المنظم */
         .application-form {
             max-width: 800px;
             margin: 0 auto;
             background: #fdfdfd;
-            padding: 30px;
-            border: 1px solid #ddd;
+            padding: 35px;
+            border: 1px solid #e0e0e0;
             border-radius: 10px;
         }
 
@@ -280,21 +318,22 @@
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 6px;
             font-size: 1rem;
         }
 
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             outline: none;
             border-color: var(--gold-color);
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
         }
 
         .submit-btn {
             background-color: var(--primary-color);
             color: var(--white);
-            padding: 12px 30px;
+            padding: 14px 30px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
@@ -306,39 +345,48 @@
             background-color: var(--secondary-color);
         }
 
-        /* قسم التواصل والعنوان */
+        /* قسم التواصل */
         .contact-box {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
             text-align: center;
             padding: 60px 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             margin-top: 50px;
+            position: relative;
         }
 
         .contact-box h3 {
             color: var(--gold-color);
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 15px;
         }
 
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 35px;
             flex-wrap: wrap;
-            margin-top: 25px;
+            margin-top: 30px;
             font-size: 1.1rem;
         }
 
-        .contact-info div {
+        .contact-info a, .contact-info div {
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--gold-color);
         }
 
         .contact-info i {
             color: var(--gold-color);
+            font-size: 1.3rem;
         }
 
         /* الفوتر */
@@ -347,8 +395,9 @@
             color: #aaa;
             text-align: center;
             padding: 25px 20px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-top: 50px;
+            border-top: 1px solid rgba(212,175,55,0.2);
         }
 
         footer span {
@@ -362,8 +411,8 @@
     <header>
         <div class="navbar">
             <div class="logo-area">
-                <!-- مكان شعار الشركة: استبدل logo.png باسم صورة الشعار الفعلية -->
-                <img src="logo.png" alt="شعار شركة فورت لاين">
+                <!-- استبدل logo.png بالشعار الأساسي image_3.png -->
+                <img src="logo.png" alt="شعار فورت لاين">
                 <h1>فورت لاين للحراسة</h1>
             </div>
             <ul class="nav-links">
@@ -372,7 +421,7 @@
                 <li><a href="#join">انضم إلينا</a></li>
                 <li><a href="#contact">اتصل بنا</a></li>
             </ul>
-            <a href="#join" class="cta-btn">قدم طلبك الآن</a>
+            <a href="#join" class="cta-btn-nav">انضم لفريق العمل</a>
         </div>
     </header>
 
@@ -382,16 +431,15 @@
             <div class="hero-content">
                 <h2>الثقة والأمان غايتنا</h2>
                 <p>
-                    تُعد شركة فورت لاين للحراسة إحدى الشركات المتخصصة والرائدة في تقديم خدمات الحراسات الخاصة وحماية المنشآت وتأمينها من الداخل. نعتمد على أحدث الأساليب ورسم الخطط الأمنية المتكاملة تحت إشراف نخبة من القادة والمتخصصين.
+                    تُعد شركة فورت لاين للحراسة إحدى الشركات الرائدة في تقديم خدمات الحراسات الخاصة وحماية المنشآت وتأمينها من الداخل تحت إشراف نخبة من القادة والمتخصصين.
                 </p>
-                <a href="#contact" class="cta-btn" style="padding: 12px 30px; font-size: 1.1rem;">اطلب خطة تأمين منشأتك</a>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn-main">اطلب خطة تأمين منشأتك</a>
+                    <a href="#join" class="btn-secondary">انضم كفرد أمن / مشرف</a>
+                </div>
             </div>
-            <div class="hero-images">
-                <!-- صورة رجل الأمن المصممة بالذكاء الاصطناعي -->
-                <img src="security-ai.png" alt="رجل أمن فورت لاين">
-                <!-- الصورة العرضية / الختم -->
-                <img src="banner-seal.png" alt="شعار وفتم شركة فورت لاين">
-            </div>
+            <!-- البانر العرضي (image_2.png) -->
+            <img src="banner.png" alt="بانر شركة فورت لاين للحراسة" class="hero-banner-img">
         </div>
     </section>
 
@@ -405,8 +453,8 @@
         <div class="portfolio-grid">
             <div class="portfolio-card">
                 <i class="fa-solid fa-building-shield"></i>
-                <h4>القطاع السكني والمجمعات</h4>
-                <p>تأمين المجمعات السكنية (الكمبوندات)، واتحادات الشاغليين، والأبراج والمباني السكنية وتظيم دخول وخروج الزوار.</p>
+                <h4>القطاع السكني والكمبوندات</h4>
+                <p>تأمين المجمعات السكنية، اتحادات الشاغليين، والأبراج والمباني السكنية وتظيم دخول وخروج الزوار.</p>
             </div>
             <div class="portfolio-card">
                 <i class="fa-solid fa-briefcase"></i>
@@ -446,10 +494,10 @@
         </div>
     </section>
 
-    <!-- قسم التوظيف (انضم إلينا) -->
+    <!-- قسم انضم إلينا (فريق العمل) -->
     <section id="join" style="background-color: #f1f3f5;">
         <div class="section-title">
-            <h3>انضم إلى فريق عمل فورت لاين</h3>
+            <h3>انضم إلى فريق عمل شركة فورت لاين</h3>
             <p>ابني مستقبلك المهني معنا.. واحصل على وظيفة مرموقة في عالم التأمين والحراسات</p>
         </div>
 
@@ -457,7 +505,7 @@
             <div class="features-list">
                 <div class="feature-item">
                     <h5>بيئة عمل احترافية</h5>
-                    <p>نعمل تحت إشراف نخبة من القادة والخبراء المتخصصين في مجال الحراسات.</p>
+                    <p>نعمل تحت إشراف نخبة من القادة والخبراء المتخصصين في الحراسات الأمنية.</p>
                 </div>
                 <div class="feature-item">
                     <h5>استقرار وتطوير مهني</h5>
@@ -469,13 +517,13 @@
                 </div>
                 <div class="feature-item">
                     <h5>تقدير واحترام</h5>
-                    <p>نؤمن بأن العنصر البشري هو أساس نجاح الشركة وشعارنا الثقة والأمان.</p>
+                    <p>نؤمن بأن العنصر البشري أساس النجاح وشعارنا الراسخ الثقة والأمان.</p>
                 </div>
             </div>
 
-            <!-- نموذج التقديم -->
+            <!-- نموذج التقديم للوظائف -->
             <div class="application-form">
-                <h4 style="text-align: center; margin-bottom: 20px; color: var(--primary-color);">نموذج التقديم الإلكتروني للوظائف</h4>
+                <h4 style="text-align: center; margin-bottom: 25px; color: var(--primary-color);">نموذج التقديم للوظائف (فرد أمن / مشرف)</h4>
                 <form action="#" method="POST">
                     <div class="form-group">
                         <label>الاسم بالكامل</label>
@@ -487,7 +535,7 @@
                     </div>
                     <div class="form-group">
                         <label>المحافظة / العنوان</label>
-                        <input type="text" placeholder="مثال: كفر الشيخ - مركز..." required>
+                        <input type="text" placeholder="مثال: كفر الشيخ - شارع..." required>
                     </div>
                     <div class="form-group">
                         <label>السن</label>
@@ -517,13 +565,13 @@
                     </div>
                     <div class="form-group">
                         <label>الخبرات السابقة (إن وجدت)</label>
-                        <textarea rows="3" placeholder="اكتب نبذة عن أعمالك السابقة في مجال الأمن..."></textarea>
+                        <textarea rows="3" placeholder="اكتب نبذة عن أعمالك السابقة في مجال الحراسة..."></textarea>
                     </div>
                     <div class="form-group">
-                        <label>إرفاق السيرة الذاتية (CV)</label>
-                        <input type="file" accept=".pdf,.doc,.docx">
+                        <label>إرفاق السيرة الذاتية (CV) أو صورة الشخصية</label>
+                        <input type="file" accept=".pdf,.doc,.docx,.png,.jpg">
                     </div>
-                    <button type="submit" class="submit-btn">قدم الآن</button>
+                    <button type="submit" class="submit-btn">إرسال طلب الانضمام</button>
                 </form>
             </div>
         </div>
@@ -535,25 +583,27 @@
             <h3>تواصل معنا أو قدم طلباتك بمقر الشركة</h3>
             <p>يسعدنا تلقي استفساراتكم وطلبات التأمين الاستشارية على مدار الساعة</p>
             <div class="contact-info">
-                <div>
+                <!-- العنوان يفتح خرائط جوجل -->
+                <a href="https://maps.google.com/?q=كفر+الشيخ+شارع+بورسعيد+أبراج+الصيانة" target="_blank">
                     <i class="fa-solid fa-location-dot"></i>
-                    <span>العنوان: أبراج الصيانة - شارع بورسعيد - محافظة كفر الشيخ</span>
-                </div>
-                <div>
+                    <span>العنوان: أبراج الصيانة - شارع بورسعيد - كفر الشيخ</span>
+                </a>
+                <!-- أرقام الهاتف تتيح الاتصال المباشر -->
+                <a href="tel:01080800759">
                     <i class="fa-solid fa-phone"></i>
-                    <span>الهاتف المحمول: 01080800759</span>
-                </div>
-                <div>
+                    <span>01080800759</span>
+                </a>
+                <a href="tel:0473106688">
                     <i class="fa-solid fa-building"></i>
-                    <span>الهاتف الأرضي: 0473106688</span>
-                </div>
+                    <span>0473106688</span>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- الفوتر -->
     <footer>
-        <p>جميع الحقوق محفوظة © 2026 <span>شركة فورت لاين للحراسة</span> | تصميم وتنفيذ برمجيات الموقع.</p>
+        <p>جميع الحقوق محفوظة ©️ 2026 <span>شركة فورت لاين للحراسة</span> | تأسست 2024 (الثقة والأمان غايتنا).</p>
     </footer>
 
 </body>
