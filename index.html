@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>شركة فورت لاين للحراسة | الثقة والأمان غايتنا</title>
     <!-- خط Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -35,9 +35,10 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
+            touch-action: pan-y; /* قفل الزووم العرضي تماماً وتثبيت الصفحة */
         }
 
-        /* شريط الأمن الحي العلوي مع تأثير الرادار الأمني الجميل */
+        /* شريط الأمن الحي العلوي */
         .security-ticker {
             background: #03080f;
             color: var(--gold-color);
@@ -55,7 +56,6 @@
             position: relative;
         }
 
-        /* لمسة أمنية تفاعلية: خط رادار متحرك */
         .security-ticker::after {
             content: '';
             position: absolute;
@@ -159,24 +159,10 @@
         .hero {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
-            padding: 135px 15px 60px;
+            padding: 135px 15px 50px;
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .hero::before {
-            content: "\f3ed";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            position: absolute;
-            font-size: 18rem;
-            color: rgba(255, 255, 255, 0.02);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-            pointer-events: none;
         }
 
         .hero-container {
@@ -250,14 +236,14 @@
 
         /* الأقسام العامة */
         section {
-            padding: 50px 15px;
+            padding: 40px 15px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             padding: 0 10px;
         }
 
@@ -325,6 +311,99 @@
             line-height: 1.5;
         }
 
+        /* قسم غرفة العمليات الأمنية الذكية المضافة حديثاً (ميزة فائقة الفخامة) */
+        .security-command-center {
+            background: linear-gradient(135deg, #040d1a, #0b192c);
+            border-radius: 16px;
+            padding: 25px 20px;
+            color: #fff;
+            margin-top: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .command-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .command-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.05rem;
+            font-weight: 900;
+            color: var(--gold-color);
+        }
+
+        .live-badge {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--security-green);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--security-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--security-green);
+            animation: pulseGlow 1.5s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px var(--security-green); }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        .command-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            text-align: center;
+        }
+
+        .command-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 12px 10px;
+            border-radius: 10px;
+        }
+
+        .command-box i {
+            font-size: 1.3rem;
+            color: var(--gold-color);
+            margin-bottom: 6px;
+        }
+
+        .command-box h5 {
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            margin-bottom: 4px;
+        }
+
+        .command-box p {
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: var(--white);
+        }
+
         @media(max-width: 768px) {
             .security-ticker {
                 font-size: 0.65rem;
@@ -334,7 +413,7 @@
                 top: 24px;
             }
             .hero {
-                padding: 115px 12px 50px;
+                padding: 115px 12px 40px;
             }
             .portfolio-grid {
                 grid-template-columns: 1fr;
@@ -352,21 +431,24 @@
                 font-size: 1.35rem;
             }
             .about-section {
-                padding: 20px 15px !important;
+                padding: 18px 12px !important;
                 flex-direction: column;
                 text-align: center;
             }
+            .command-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* قسم عن الشركة والختم (تم تكبير الختم بوضوح) */
+        /* قسم عن الشركة والختم (بدون مسافات زائدة فوق وتحت ومظبوط تماماً) */
         .about-section {
             background: var(--white);
             border-radius: 16px;
-            padding: 30px;
+            padding: 20px 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
             flex-wrap: wrap;
             justify-content: space-between;
             margin-top: 25px;
@@ -380,33 +462,34 @@
 
         .about-content h3 {
             color: var(--primary-color);
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 1.25rem;
+            margin-bottom: 8px;
             font-weight: 900;
         }
 
         .about-content p {
-            font-size: 0.85rem;
+            font-size: 0.84rem;
             color: #475569;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         .about-seal {
             text-align: center;
             flex-shrink: 0;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .about-seal img {
-            width: 150px; /* تم التكبير ليصبح بارزاً وواضحاً */
-            height: 150px; /* تم التكبير ليصبح بارزاً وواضحاً */
+            width: 135px;
+            height: 135px;
             object-fit: contain;
-            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
-            transition: transform 0.3s ease;
-        }
-
-        .about-seal img:hover {
-            transform: scale(1.05);
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12));
+            display: block;
+            margin: 0 auto;
         }
 
         /* النوافذ المنبثقة (Modals) */
@@ -574,25 +657,12 @@
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
             text-align: center;
-            padding: 40px 15px;
+            padding: 35px 15px;
             border-radius: 14px;
-            margin-top: 35px;
+            margin-top: 25px;
             border: 1px solid rgba(212,175,55,0.2);
             position: relative;
             overflow: hidden;
-        }
-
-        /* إضافة عنصر زخرفي أمني خلفي */
-        .contact-box::before {
-            content: "\f023";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            position: absolute;
-            font-size: 10rem;
-            color: rgba(212, 175, 55, 0.03);
-            bottom: -20px;
-            left: 20px;
-            pointer-events: none;
         }
 
         .contact-box h3 {
@@ -612,7 +682,7 @@
             justify-content: center;
             gap: 10px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 18px;
         }
 
         .contact-item {
@@ -634,7 +704,7 @@
             text-align: center;
             padding: 18px 15px;
             font-size: 0.78rem;
-            margin-top: 25px;
+            margin-top: 20px;
             border-top: 1px solid rgba(212,175,55,0.15);
         }
 
@@ -645,7 +715,7 @@
 </head>
 <body>
 
-    <!-- شريط حالة التأمين الحي مع تأثير رادار المسح الأمني -->
+    <!-- شريط حالة التأمين الحي -->
     <div class="security-ticker">
         <i class="fa-solid fa-shield-halved" style="color: var(--gold-color);"></i>
         حالة الطوارئ: <span><i class="fa-solid fa-circle" style="font-size: 6px;"></i> تأمين مشدد ومنظومة حراسة ذكية تعمل على مدار الساعة</span>
@@ -715,7 +785,36 @@
             </div>
         </div>
 
-        <!-- عن الشركة والختم (بحجم أكبر وبارز) -->
+        <!-- غرفة العمليات الأمنية الذكية المضافة حديثاً (شكل فخم وميزة أمنية حية) -->
+        <div class="security-command-center">
+            <div class="command-header">
+                <div class="command-title">
+                    <i class="fa-solid fa-satellite-dish"></i> غرفة العمليات والتحكم المركزي الذكي (AI-SOC)
+                </div>
+                <div class="live-badge">
+                    <div class="live-dot"></div> نظام مراقبة نشط 100%
+                </div>
+            </div>
+            <div class="command-grid">
+                <div class="command-box">
+                    <i class="fa-solid fa-radar"></i>
+                    <h5>الرادار الأمني الميداني</h5>
+                    <p>تغطية كاملة بنطاق 360°</p>
+                </div>
+                <div class="command-box">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h5>استجابة الطوارئ</h5>
+                    <p>&lt; 3 دقائق لتدخل الفرق</p>
+                </div>
+                <div class="command-box">
+                    <i class="fa-solid fa-fingerprint"></i>
+                    <h5>البصمة والتحقق الذكي</h5>
+                    <p>أنظمة تحكم آلي متطورة</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- عن الشركة والختم (مظبوط تماماً وبدون فراغات مبالغ فيها فوق أو تحت) -->
         <div class="about-section" id="about">
             <div class="about-content">
                 <h3>معايير التميز والاحترافية الأمنية</h3>
@@ -726,7 +825,7 @@
             </div>
             <div class="about-seal">
                 <img src="seal.png" alt="ختم شركة فورت لاين الرسمي">
-                <p style="font-size: 0.75rem; color: #64748b; margin-top: 6px; font-weight: 700;">معتمدة رسمياً | Since 2024</p>
+                <span style="font-size: 0.72rem; color: #64748b; margin-top: 4px; font-weight: 700;">ختم الاعتماد الرسمي</span>
             </div>
         </div>
     </section>
