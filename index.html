@@ -27,6 +27,8 @@
             padding: 0;
             font-family: 'Cairo', sans-serif;
             scroll-behavior: smooth;
+            /* منع تحديد النص المزعج والتكبير العشوائي على الموبايل */
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -61,18 +63,17 @@
             gap: 4px;
         }
 
-        /* الهيدر المتجاوب */
+        /* الهيدر المتجاوب الثابت */
         header {
             background-color: var(--primary-color);
             color: var(--white);
             position: fixed;
-            top: 25px; /* مسافة شريط الأمن */
+            top: 25px;
             left: 0;
             width: 100%;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
             border-bottom: 2px solid var(--gold-color);
-            transition: top 0.3s;
         }
 
         .navbar {
@@ -142,13 +143,12 @@
         .hero {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
-            padding: 135px 15px 60px; /* مسافة إضافية عشان الهيدر والشريط */
+            padding: 135px 15px 60px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        /* خلفية أمنية جمالية بشعار الدرع */
         .hero::before {
             content: "\f3ed";
             font-family: "Font Awesome 6 Free";
@@ -309,7 +309,7 @@
             line-height: 1.5;
         }
 
-        /* تحسينات الموبايل الحاسمة */
+        /* تحسينات الموبايل لمنع التكقيم والتعليق */
         @media(max-width: 768px) {
             .security-ticker {
                 font-size: 0.65rem;
@@ -448,14 +448,21 @@
             font-size: 0.84rem;
         }
 
+        /* منع التكبير التلقائي في الموبايل عند التركيز على الحقول (Font-size >= 16px) */
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
-            padding: 10px 12px;
+            padding: 11px 12px;
             border: 1px solid #cbd5e1;
             border-radius: 8px;
-            font-size: 0.86rem;
+            font-size: 1rem; 
             background: #f8fafc;
             color: var(--text-color);
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--gold-color);
+            background: var(--white);
         }
 
         .ai-extracted-box {
@@ -473,10 +480,10 @@
         .submit-btn {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
-            padding: 11px;
+            padding: 12px;
             border: none;
             border-radius: 8px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 800;
             cursor: pointer;
             width: 100%;
@@ -753,20 +760,20 @@
         </div>
     </div>
 
-    <!-- نافذة تسجيل دخول الإدارة -->
+    <!-- نافذة تسجيل دخول الإدارة (فارغة ومؤمنة تماماً) -->
     <div id="adminLoginModal" class="modal-overlay">
         <div class="modal-content" style="max-width: 340px; text-align: center;">
             <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
             <h3 style="color: var(--primary-color); margin-bottom: 6px; font-weight: 900; font-size: 1.1rem;"><i class="fa-solid fa-lock" style="color: var(--gold-color);"></i> دخول الإدارة</h3>
             <p style="color: #64748b; font-size: 0.76rem; margin-bottom: 12px;">لوحة تحكم شركة فورت لاين السرية</p>
             <form onsubmit="adminLogin(event)">
-                <div class="form-group">
+                <div class="form-group" style="text-align: right;">
                     <label>اسم المستخدم</label>
-                    <input type="text" id="adminUser" placeholder="zedan" required>
+                    <input type="text" id="adminUser" placeholder="أدخل اسم المستخدم" autocomplete="off" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="text-align: right;">
                     <label>كلمة المرور</label>
-                    <input type="password" id="adminPass" placeholder="Mm252009" required>
+                    <input type="password" id="adminPass" placeholder="أدخل كلمة المرور" autocomplete="new-password" required>
                 </div>
                 <button type="submit" class="submit-btn" style="margin-top: 4px;">دخول اللوحة</button>
             </form>
@@ -859,6 +866,9 @@
             logoClicks++;
             if (logoClicks === 4) {
                 logoClicks = 0;
+                // تفريغ الحقول حماية للسرية عند فتح اللوحة
+                document.getElementById('adminUser').value = '';
+                document.getElementById('adminPass').value = '';
                 document.getElementById('adminLoginModal').style.display = 'flex';
             }
             setTimeout(() => { logoClicks = 0; }, 3000);
