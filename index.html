@@ -19,6 +19,7 @@
             --text-color: #2c3e50;
             --white: #ffffff;
             --security-green: #10b981;
+            --danger-red: #ef4444;
         }
 
         * {
@@ -35,7 +36,7 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
-            touch-action: pan-y; /* قفل الزووم العرضي تماماً وتثبيت الصفحة */
+            touch-action: pan-y;
         }
 
         /* شريط الأمن الحي العلوي */
@@ -79,7 +80,7 @@
             gap: 4px;
         }
 
-        /* الهيدر المتجاوب الثابت */
+        /* الهيدر المتجاوب الثابت مع شعار خلفية مائي رقيق جداً */
         header {
             background-color: var(--primary-color);
             color: var(--white);
@@ -90,6 +91,23 @@
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
             border-bottom: 2px solid var(--gold-color);
+            overflow: hidden;
+        }
+
+        /* الشعار المائي الخفيف الخلفي في الهيدر */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            width: 120px;
+            height: 120px;
+            background: url('logo.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.04; /* خفيف ورقيق جداً في الخلفية */
+            pointer-events: none;
+            z-index: 0;
         }
 
         .navbar {
@@ -99,26 +117,27 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 15px;
+            position: relative;
+            z-index: 1;
         }
 
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             text-decoration: none;
             cursor: pointer;
             user-select: none;
         }
 
         .logo-area img {
-            height: 36px;
+            height: 42px; /* تم تكبير الشعار الرئيسي قليلاً ليكون واضحاً ومميزاً */
             width: auto;
             object-fit: contain;
-            border-radius: 4px;
         }
 
         .logo-area h1 {
-            font-size: 0.92rem;
+            font-size: 0.98rem;
             color: var(--gold-color);
             font-weight: 900;
             white-space: nowrap;
@@ -155,7 +174,7 @@
             white-space: nowrap;
         }
 
-        /* الواجهة الرئيسية (Hero) */
+        /* الواجهة الرئيسية (Hero) مع شعار مائي خلفي رقيق */
         .hero {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
@@ -163,6 +182,21 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            background: url('logo.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.03; /* شفاف وخفيف جداً في الخلفية */
+            pointer-events: none;
+            z-index: 0;
         }
 
         .hero-container {
@@ -311,7 +345,7 @@
             line-height: 1.5;
         }
 
-        /* قسم غرفة العمليات الأمنية الذكية المضافة حديثاً (ميزة فائقة الفخامة) */
+        /* غرفة العمليات الأمنية الذكية */
         .security-command-center {
             background: linear-gradient(135deg, #040d1a, #0b192c);
             border-radius: 16px;
@@ -320,8 +354,6 @@
             margin-top: 30px;
             border: 1px solid rgba(212, 175, 55, 0.3);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
         }
 
         .command-header {
@@ -404,43 +436,7 @@
             color: var(--white);
         }
 
-        @media(max-width: 768px) {
-            .security-ticker {
-                font-size: 0.65rem;
-                padding: 4px 6px;
-            }
-            header {
-                top: 24px;
-            }
-            .hero {
-                padding: 115px 12px 40px;
-            }
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-            .portfolio-card.full-width {
-                grid-column: span 1;
-                flex-direction: column;
-                text-align: center;
-            }
-            .nav-links {
-                display: none; 
-            }
-            .hero h2 {
-                font-size: 1.35rem;
-            }
-            .about-section {
-                padding: 18px 12px !important;
-                flex-direction: column;
-                text-align: center;
-            }
-            .command-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* قسم عن الشركة والختم (بدون مسافات زائدة فوق وتحت ومظبوط تماماً) */
+        /* قسم عن الشركة والختم (مضبوط تماماً بدون مساحات زائدة) */
         .about-section {
             background: var(--white);
             border-radius: 16px;
@@ -484,12 +480,24 @@
         }
 
         .about-seal img {
-            width: 135px;
-            height: 135px;
+            width: 130px;
+            height: 130px;
             object-fit: contain;
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12));
             display: block;
             margin: 0 auto;
+        }
+
+        @media(max-width: 768px) {
+            .security-ticker { font-size: 0.65rem; padding: 4px 6px; }
+            header { top: 24px; }
+            .hero { padding: 115px 12px 40px; }
+            .portfolio-grid { grid-template-columns: 1fr; gap: 12px; }
+            .portfolio-card.full-width { grid-column: span 1; flex-direction: column; text-align: center; }
+            .nav-links { display: none; }
+            .hero h2 { font-size: 1.35rem; }
+            .about-section { padding: 18px 12px !important; flex-direction: column; text-align: center; }
+            .command-grid { grid-template-columns: 1fr; }
         }
 
         /* النوافذ المنبثقة (Modals) */
@@ -558,11 +566,6 @@
             outline: none;
         }
 
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: var(--gold-color);
-            background: var(--white);
-        }
-
         .ai-extracted-box {
             background: #f0fdf4;
             border: 1px solid #bbf7d0;
@@ -588,9 +591,9 @@
             margin-top: 4px;
         }
 
-        /* لوحة التحكم */
+        /* لوحة التحكم الاحترافية (إدارة شاملة وترقيات وطرد) */
         #adminDashboardModal .modal-content {
-            max-width: 950px;
+            max-width: 1000px;
             background: #0b1320;
             color: #fff;
             padding: 18px 12px;
@@ -642,7 +645,7 @@
         }
 
         th, td {
-            padding: 8px 10px;
+            padding: 9px 10px;
             text-align: right;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
@@ -652,7 +655,45 @@
             background: rgba(255,255,255,0.03);
         }
 
-        /* التواصل */
+        .action-btns-group {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-promote {
+            background: var(--security-green);
+            color: #fff;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .btn-demote {
+            background: #f59e0b;
+            color: #fff;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .btn-fire {
+            background: var(--danger-red);
+            color: #fff;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* التواصل والفوتر */
         .contact-box {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
@@ -662,7 +703,6 @@
             margin-top: 25px;
             border: 1px solid rgba(212,175,55,0.2);
             position: relative;
-            overflow: hidden;
         }
 
         .contact-box h3 {
@@ -670,11 +710,6 @@
             font-size: 1.35rem;
             margin-bottom: 8px;
             font-weight: 900;
-        }
-
-        .contact-box p {
-            font-size: 0.85rem;
-            color: #cbd5e1;
         }
 
         .contact-info {
@@ -785,7 +820,7 @@
             </div>
         </div>
 
-        <!-- غرفة العمليات الأمنية الذكية المضافة حديثاً (شكل فخم وميزة أمنية حية) -->
+        <!-- غرفة العمليات الأمنية الذكية -->
         <div class="security-command-center">
             <div class="command-header">
                 <div class="command-title">
@@ -814,7 +849,7 @@
             </div>
         </div>
 
-        <!-- عن الشركة والختم (مظبوط تماماً وبدون فراغات مبالغ فيها فوق أو تحت) -->
+        <!-- عن الشركة والختم -->
         <div class="about-section" id="about">
             <div class="about-content">
                 <h3>معايير التميز والاحترافية الأمنية</h3>
@@ -830,16 +865,13 @@
         </div>
     </section>
 
-    <!-- نافذة نبذة عن الشركة -->
+    <!-- النوافذ المنبثقة -->
     <div id="aboutModal" class="modal-overlay">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
             <h3 style="color: var(--primary-color); margin-bottom: 10px; font-weight: 900; font-size: 1.1rem;"><i class="fa-solid fa-shield-dog" style="color:var(--gold-color);"></i> نبذة تفصيلية عن فورت لاين</h3>
             <p style="color: #475569; margin-bottom: 10px; font-size: 0.84rem; line-height: 1.6;">
                 تأسست شركة فورت لاين لتكون العلامة الفارقة في مجال الأمن والحراسات الخاصة وتأمين المنشآت الحيوية. نحن نؤمن بأن الأمان منظومة متكاملة تبدأ بدراسة المخاطر وتنتهي بالسيطرة التامة.
-            </p>
-            <p style="color: #475569; font-size: 0.84rem; line-height: 1.6;">
-                فريقنا مُختار بعناية فائقة ويخضع لدورات تدريبية مكثفة للتعامل مع الطوارئ وأنظمة المراقبة الحديثة لضمان راحة عملائنا على مدار الساعة.
             </p>
         </div>
     </div>
@@ -909,12 +941,12 @@
         </div>
     </div>
 
-    <!-- نافذة لوحة التحكم الكاملة -->
+    <!-- نافذة لوحة التحكم مع صلاحيات كاملة (ترقية - تنزيل رتبه - طرد) -->
     <div id="adminDashboardModal" class="modal-overlay">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                <h3 style="color: var(--gold-color); font-weight: 900; font-size: 1.05rem;"><i class="fa-solid fa-chart-line"></i> لوحة التحكم والإدارة</h3>
+                <h3 style="color: var(--gold-color); font-weight: 900; font-size: 1.05rem;"><i class="fa-solid fa-chart-line"></i> لوحة التحكم والإدارة الذكية</h3>
                 <button onclick="logoutAdmin()" style="background: #ef4444; color: #fff; border: none; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 0.75rem;">خروج</button>
             </div>
 
@@ -937,18 +969,17 @@
                 </div>
             </div>
 
-            <h4 style="color: var(--gold-color); margin-bottom: 6px; font-weight: 800; font-size: 0.9rem;">طلبات التوظيف الواردة (<span id="applicantCount">0</span>)</h4>
+            <h4 style="color: var(--gold-color); margin-bottom: 6px; font-weight: 800; font-size: 0.9rem;">إدارة الأفراد والطلبات الواردة (<span id="applicantCount">0</span>)</h4>
             <div class="table-responsive">
                 <table>
                     <thead>
                         <tr>
                             <th>الاسم</th>
                             <th>الرقم القومي</th>
-                            <th>تاريخ الميلاد والسن</th>
-                            <th>المحافظة</th>
+                            <th>السن والمحافظة</th>
                             <th>الهاتف</th>
-                            <th>الموقف</th>
-                            <th>الوظيفة</th>
+                            <th>الرتبة / الوظيفة الحالية</th>
+                            <th>إجراءات التحكم (ترقية / تنزيل / طرد)</th>
                         </tr>
                     </thead>
                     <tbody id="applicantsTableBody">
@@ -972,10 +1003,6 @@
                 <a href="tel:01080800759" class="contact-item">
                     <i class="fa-solid fa-phone"></i>
                     <span>01080800759</span>
-                </a>
-                <a href="tel:0473106688" class="contact-item">
-                    <i class="fa-solid fa-building"></i>
-                    <span>0473106688</span>
                 </a>
             </div>
         </div>
@@ -1002,52 +1029,25 @@
             setTimeout(() => { logoClicks = 0; }, 3000);
         });
 
-        function openJobModal(e) {
-            if(e) e.preventDefault();
-            document.getElementById('jobModal').style.display = 'flex';
-        }
-        function openAboutModal(e) {
-            if(e) e.preventDefault();
-            document.getElementById('aboutModal').style.display = 'flex';
-        }
-        function closeModals() {
-            document.querySelectorAll('.modal-overlay').forEach(modal => modal.style.display = 'none');
-        }
+        function openJobModal(e) { if(e) e.preventDefault(); document.getElementById('jobModal').style.display = 'flex'; }
+        function openAboutModal(e) { if(e) e.preventDefault(); document.getElementById('aboutModal').style.display = 'flex'; }
+        function closeModals() { document.querySelectorAll('.modal-overlay').forEach(modal => modal.style.display = 'none'); }
 
         function analyzeNationalID(nid) {
             const box = document.getElementById('aiInfoBox');
             const txt = document.getElementById('aiResultText');
-            
             if (nid.length === 14 && /^\d+$/.test(nid)) {
                 let century = nid[0] === '2' ? 1900 : 2000;
                 let year = century + parseInt(nid.substr(1, 2));
                 let month = nid.substr(3, 2);
                 let day = nid.substr(5, 2);
                 let govCode = nid.substr(7, 2);
-
-                const govMap = {
-                    "01": "القاهرة", "02": "الإسكندرية", "03": "بورسعيد", "04": "السويس",
-                    "11": "دمياط", "12": "الدقهلية", "13": "الشرقية", "14": "القليوبية",
-                    "15": "كفر الشيخ", "16": "الغربية", "17": "المنوفية", "18": "البحيرة",
-                    "19": "الإسماعيلية", "21": "الجيزة", "22": "بني سويف", "23": "الفيوم",
-                    "24": "المنيا", "25": "أسيوط", "26": "سوهاج", "27": "قنا",
-                    "28": "أسوان", "29": "الأقصر", "31": "البحر الأحمر", "33": "مطروح"
-                };
+                const govMap = {"01": "القاهرة", "02": "الإسكندرية", "11": "دمياط", "12": "الدقهلية", "13": "الشرقية", "14": "القليوبية", "15": "كفر الشيخ", "16": "الغربية", "18": "البحيرة", "21": "الجيزة"};
                 let govName = govMap[govCode] || "مصر";
-
-                let birthDate = new Date(year, month - 1, day);
-                let today = new Date();
-                let age = today.getFullYear() - birthDate.getFullYear();
-                let m = today.getMonth() - birthDate.getMonth();
-                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                    age--;
-                }
-
+                let age = new Date().getFullYear() - year;
                 txt.innerHTML = `${day}/${month}/${year} | السن: ${age} سنة | ${govName}`;
                 box.style.display = 'block';
-            } else {
-                box.style.display = 'none';
-            }
+            } else { box.style.display = 'none'; }
         }
 
         function submitApplication(e) {
@@ -1059,16 +1059,12 @@
             let job = document.getElementById('appJob').value;
 
             let year = (nid[0] === '2' ? 1900 : 2000) + parseInt(nid.substr(1, 2));
-            let month = nid.substr(3, 2);
-            let day = nid.substr(5, 2);
-            let birthStr = `${day}/${month}/${year}`;
             let age = new Date().getFullYear() - year;
             let govCode = nid.substr(7, 2);
-            
             const govMap = {"01": "القاهرة", "02": "الإسكندرية", "11": "دمياط", "12": "الدقهلية", "13": "الشرقية", "14": "القليوبية", "15": "كفر الشيخ", "16": "الغربية", "18": "البحيرة", "21": "الجيزة"};
             let gov = govMap[govCode] || "مصر";
 
-            let newApplicant = { name, nid, birth: `${birthStr} (${age} سنة)`, gov, phone, military, job, date: new Date().toLocaleDateString('ar-EG') };
+            let newApplicant = { id: Date.now(), name, nid, details: `${age} سنة - ${gov}`, phone, job };
 
             let applicants = JSON.parse(localStorage.getItem('fortline_applicants')) || [];
             applicants.push(newApplicant);
@@ -1084,19 +1080,14 @@
             e.preventDefault();
             let u = document.getElementById('adminUser').value.trim();
             let p = document.getElementById('adminPass').value.trim();
-
             if (u === 'zedan' && p === 'Mm252009') {
                 document.getElementById('adminLoginModal').style.display = 'none';
                 loadAdminDashboard();
                 document.getElementById('adminDashboardModal').style.display = 'flex';
-            } else {
-                alert('خطأ في اسم المستخدم أو كلمة المرور!');
-            }
+            } else { alert('خطأ في اسم المستخدم أو كلمة المرور!'); }
         }
 
-        function logoutAdmin() {
-            document.getElementById('adminDashboardModal').style.display = 'none';
-        }
+        function logoutAdmin() { document.getElementById('adminDashboardModal').style.display = 'none'; }
 
         function loadAdminDashboard() {
             let applicants = JSON.parse(localStorage.getItem('fortline_applicants')) || [];
@@ -1105,31 +1096,59 @@
             tbody.innerHTML = '';
 
             if (applicants.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#94a3b8;">لا توجد طلبات مسجلة حتى الآن</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#94a3b8;">لا توجد عناصر مسجلة حالياً</td></tr>`;
                 return;
             }
 
-            applicants.forEach(app => {
+            applicants.forEach((app, index) => {
                 let tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${app.name}</td>
                     <td>${app.nid}</td>
-                    <td>${app.birth}</td>
-                    <td>${app.gov}</td>
+                    <td>${app.details}</td>
                     <td>${app.phone}</td>
-                    <td>${app.military}</td>
                     <td><strong style="color:var(--gold-color);">${app.job}</strong></td>
+                    <td>
+                        <div class="action-btns-group">
+                            <button class="btn-promote" onclick="changeRank(${index}, 'up')"><i class="fa-solid fa-arrow-up"></i> ترقية</button>
+                            <button class="btn-demote" onclick="changeRank(${index}, 'down')"><i class="fa-solid fa-arrow-down"></i> تنزيل</button>
+                            <button class="btn-fire" onclick="fireApplicant(${index})"><i class="fa-solid fa-user-xmark"></i> طرد</button>
+                        </div>
+                    </td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal-overlay')) {
-                closeModals();
+        function changeRank(index, direction) {
+            let applicants = JSON.parse(localStorage.getItem('fortline_applicants')) || [];
+            let ranks = ["فرد أمن ومراقبة", "مشرف موقع", "قائد قطاع أمني", "مدير عمليات"];
+            let currentJob = applicants[index].job;
+            let currentIdx = ranks.indexOf(currentJob);
+            if (currentIdx === -1) currentIdx = 0;
+
+            if (direction === 'up' && currentIdx < ranks.length - 1) {
+                applicants[index].job = ranks[currentIdx + 1];
+            } else if (direction === 'down' && currentIdx > 0) {
+                applicants[index].job = ranks[currentIdx - 1];
+            }
+
+            localStorage.setItem('fortline_applicants', JSON.stringify(applicants));
+            loadAdminDashboard();
+        }
+
+        function fireApplicant(index) {
+            if (confirm('هل أنت متأكد من طرد وحذف هذا العنصر الأمني نهائياً؟')) {
+                let applicants = JSON.parse(localStorage.getItem('fortline_applicants')) || [];
+                applicants.splice(index, 1);
+                localStorage.setItem('fortline_applicants', JSON.stringify(applicants));
+                loadAdminDashboard();
             }
         }
-    </script>
 
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-overlay')) { closeModals(); }
+        }
+    </script>
 </body>
 </html>
