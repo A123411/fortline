@@ -1,1120 +1,2404 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>شركة فورت لاين للحراسة | الثقة والأمان غايتنا</title>
-    <!-- خط Cairo -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- أيقونات FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary-color: #071321;
-            --secondary-color: #112238;
-            --accent-color: #ff6500;
-            --gold-color: #d4af37;
-            --light-bg: #f4f6f9;
-            --text-color: #2c3e50;
-            --white: #ffffff;
-            --security-green: #10b981;
-            --danger-red: #ef4444;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-            scroll-behavior: smooth;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden;
-            touch-action: pan-y;
-        }
-
-        /* شريط الأمن الحي العلوي */
-        .security-ticker {
-            background: #03080f;
-            color: var(--gold-color);
-            font-size: 0.72rem;
-            padding: 6px 10px;
-            text-align: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            font-weight: 700;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-
-        .security-ticker span {
-            color: var(--security-green);
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* الهيدر (ثبيته في مكانه الطبيعي وبدون حركة مزعجة مع التصفح) */
-        header {
-            background-color: var(--primary-color);
-            color: var(--white);
-            width: 100%;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            border-bottom: 2px solid var(--gold-color);
-            position: relative;
-            z-index: 100;
-        }
-
-        .navbar {
-            max-width: 1250px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 15px;
-        }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        /* تعديل الشعار فوق على اليمين من غير خلفية ومندمج بشكل رقيق */
-        .logo-area img {
-            height: 38px;
-            width: auto;
-            object-fit: contain;
-            background: transparent;
-            mix-blend-mode: luminosity; /* لدمج الألوان مع الخلفية بأناقة */
-            opacity: 0.95;
-        }
-
-        .logo-area h1 {
-            font-size: 0.95rem;
-            color: var(--gold-color);
-            font-weight: 900;
-            white-space: nowrap;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.88rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold-color);
-        }
-
-        .cta-btn-nav {
-            background: linear-gradient(135deg, var(--gold-color), #b89728);
-            color: var(--primary-color);
-            padding: 6px 10px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 0.74rem;
-            box-shadow: 0 3px 8px rgba(212, 175, 55, 0.3);
-            white-space: nowrap;
-        }
-
-        /* الواجهة الرئيسية (Hero) */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--white);
-            padding: 55px 15px 50px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-container {
-            max-width: 850px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(212, 175, 55, 0.15);
-            color: var(--gold-color);
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 0.76rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .hero h2 {
-            font-size: 1.65rem;
-            margin-bottom: 12px;
-            color: var(--gold-color);
-            font-weight: 900;
-            line-height: 1.3;
-        }
-
-        .hero p {
-            font-size: 0.9rem;
-            color: #d1d8e0;
-            margin-bottom: 20px;
-            padding: 0 5px;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-gold {
-            background: linear-gradient(135deg, var(--gold-color), #b89728);
-            color: var(--primary-color);
-            padding: 10px 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 0.86rem;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-            display: inline-block;
-            white-space: nowrap;
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255,255,255,0.3);
-            padding: 10px 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.86rem;
-            display: inline-block;
-            white-space: nowrap;
-        }
-
-        /* الأقسام العامة */
-        section {
-            padding: 40px 15px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 25px;
-            padding: 0 10px;
-        }
-
-        .section-title h3 {
-            font-size: 1.45rem;
-            color: var(--primary-color);
-            margin-bottom: 6px;
-            font-weight: 900;
-        }
-
-        .section-title p {
-            font-size: 0.86rem;
-            color: #64748b;
-        }
-
-        /* سابقة الأعمال */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
-
-        .portfolio-card {
-            background: var(--white);
-            padding: 20px 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            border-top: 4px solid var(--gold-color);
-            text-align: center;
-        }
-
-        .portfolio-card.full-width {
-            grid-column: span 3;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: linear-gradient(135deg, var(--white), #f8fafc);
-            text-align: right;
-        }
-
-        .portfolio-card i {
-            font-size: 2rem;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        .portfolio-card.full-width i {
-            margin-bottom: 0;
-            font-size: 2.2rem;
-            color: var(--gold-color);
-            flex-shrink: 0;
-        }
-
-        .portfolio-card h4 {
-            font-size: 1rem;
-            margin-bottom: 6px;
-            color: var(--primary-color);
-            font-weight: 800;
-        }
-
-        .portfolio-card p {
-            color: #64748b;
-            font-size: 0.82rem;
-            line-height: 1.5;
-        }
-
-        /* غرفة العمليات الأمنية الذكية */
-        .security-command-center {
-            background: linear-gradient(135deg, #040d1a, #0b192c);
-            border-radius: 16px;
-            padding: 25px 20px;
-            color: #fff;
-            margin-top: 30px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .command-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 12px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .command-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1.05rem;
-            font-weight: 900;
-            color: var(--gold-color);
-        }
-
-        .live-badge {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--security-green);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            border: 1px solid rgba(16, 185, 129, 0.4);
-        }
-
-        .live-dot {
-            width: 7px;
-            height: 7px;
-            background: var(--security-green);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--security-green);
-            animation: pulseGlow 1.5s infinite;
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px var(--security-green); }
-            100% { transform: scale(0.95); opacity: 0.8; }
-        }
-
-        .command-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            text-align: center;
-        }
-
-        .command-box {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 12px 10px;
-            border-radius: 10px;
-        }
-
-        .command-box i {
-            font-size: 1.3rem;
-            color: var(--gold-color);
-            margin-bottom: 6px;
-        }
-
-        .command-box h5 {
-            font-size: 0.8rem;
-            color: #cbd5e1;
-            margin-bottom: 4px;
-        }
-
-        .command-box p {
-            font-size: 0.92rem;
-            font-weight: 800;
-            color: var(--white);
-        }
-
-        /* عن الشركة والختم */
-        .about-section {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 20px 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-top: 25px;
-            border-right: 5px solid var(--gold-color);
-        }
-
-        .about-content {
-            flex: 1;
-            min-width: 240px;
-        }
-
-        .about-content h3 {
-            color: var(--primary-color);
-            font-size: 1.25rem;
-            margin-bottom: 8px;
-            font-weight: 900;
-        }
-
-        .about-content p {
-            font-size: 0.84rem;
-            color: #475569;
-            line-height: 1.5;
-        }
-
-        .about-seal {
-            text-align: center;
-            flex-shrink: 0;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .about-seal img {
-            width: 130px;
-            height: 130px;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12));
-            display: block;
-            margin: 0 auto;
-        }
-
-        @media(max-width: 768px) {
-            .security-ticker { font-size: 0.65rem; padding: 4px 6px; }
-            .hero { padding: 45px 12px 40px; }
-            .portfolio-grid { grid-template-columns: 1fr; gap: 12px; }
-            .portfolio-card.full-width { grid-column: span 1; flex-direction: column; text-align: center; }
-            .nav-links { display: none; }
-            .hero h2 { font-size: 1.35rem; }
-            .about-section { padding: 18px 12px !important; flex-direction: column; text-align: center; }
-            .command-grid { grid-template-columns: 1fr; }
-        }
-
-        /* النوافذ المنبثقة (Modals) */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 13, 23, 0.85);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 12px;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal-content {
-            background: var(--white);
-            width: 100%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            border-radius: 14px;
-            padding: 22px 18px;
-            position: relative;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            border-top: 5px solid var(--gold-color);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #f1f5f9;
-            border: none;
-            width: 30px; height: 30px;
-            border-radius: 50%;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-color);
-        }
-
-        .form-group {
-            margin-bottom: 14px;
-            text-align: right;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 4px;
-            font-weight: 700;
-            color: var(--primary-color);
-            font-size: 0.84rem;
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 11px 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 0.95rem; 
-            background: #f8fafc;
-            color: var(--text-color);
-            outline: none;
-        }
-
-        .ai-extracted-box {
-            background: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            padding: 8px 10px;
-            border-radius: 8px;
-            margin-top: 5px;
-            font-size: 0.8rem;
-            color: #166534;
-            display: none;
-            line-height: 1.5;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--white);
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 800;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 4px;
-        }
-
-        /* لوحة التحكم الاحترافية */
-        #adminDashboardModal .modal-content {
-            max-width: 1000px;
-            background: #0b1320;
-            color: #fff;
-            padding: 18px 12px;
-        }
-
-        .dashboard-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        @media(min-width: 600px) {
-            .dashboard-stats {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        .stat-card {
-            background: rgba(255,255,255,0.05);
-            padding: 12px 8px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-        }
-
-        .stat-card h4 {
-            font-size: 1.25rem;
-            color: var(--gold-color);
-            margin-bottom: 2px;
-        }
-
-        .stat-card p {
-            font-size: 0.74rem;
-            color: #cbd5e1;
-        }
-
-        .table-responsive {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 8px;
-            font-size: 0.78rem;
-            white-space: nowrap;
-        }
-
-        th, td {
-            padding: 9px 10px;
-            text-align: right;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        th {
-            color: var(--gold-color);
-            background: rgba(255,255,255,0.03);
-        }
-
-        .action-btns-group {
-            display: flex;
-            gap: 5px;
-        }
-
-        .btn-promote {
-            background: var(--security-green);
-            color: #fff;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
-
-        .btn-demote {
-            background: #f59e0b;
-            color: #fff;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
-
-        .btn-fire {
-            background: var(--danger-red);
-            color: #fff;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
-
-        /* التواصل والفوتر (مع الرقم الأرضي بشكل شيك ومميز جداً) */
-        .contact-box {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--white);
-            text-align: center;
-            padding: 35px 15px;
-            border-radius: 14px;
-            margin-top: 25px;
-            border: 1px solid rgba(212,175,55,0.2);
-            position: relative;
-        }
-
-        .contact-box h3 {
-            color: var(--gold-color);
-            font-size: 1.35rem;
-            margin-bottom: 8px;
-            font-weight: 900;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 18px;
-        }
-
-        .contact-item {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 12px 16px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.84rem;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            border-color: var(--gold-color);
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        .contact-item i {
-            color: var(--gold-color);
-            font-size: 1rem;
-        }
-
-        footer {
-            background-color: #03080f;
-            color: #94a3b8;
-            text-align: center;
-            padding: 18px 15px;
-            font-size: 0.78rem;
-            margin-top: 20px;
-            border-top: 1px solid rgba(212,175,55,0.15);
-        }
-
-        footer span {
-            color: var(--gold-color);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>شركة فورت لاين للحراسة | الثقة والأمان غايتنا</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root{
+    --primary:#06111f;
+    --primary-2:#0b1c31;
+    --secondary:#112a45;
+    --gold:#d4af37;
+    --gold-light:#f1d675;
+    --orange:#ff6500;
+    --green:#10b981;
+    --red:#ef4444;
+    --white:#fff;
+    --bg:#f3f6fa;
+    --text:#26384b;
+    --muted:#718096;
+    --border:#e4e9ef;
+    --shadow:0 15px 40px rgba(4,16,30,.08);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:'Cairo',sans-serif;
+    scroll-behavior:smooth;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    scroll-padding-top:20px;
+}
+
+body{
+    background:
+        radial-gradient(circle at 10% 10%,rgba(212,175,55,.04),transparent 25%),
+        var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+a{
+    -webkit-tap-highlight-color:transparent;
+}
+
+button,
+a{
+    transition:.25s ease;
+}
+
+/* =========================
+   TOP SECURITY BAR
+========================= */
+
+.security-ticker{
+    background:#02070d;
+    color:#dbe3eb;
+    min-height:34px;
+    padding:5px 12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    font-size:.72rem;
+    font-weight:700;
+    border-bottom:1px solid rgba(212,175,55,.18);
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+.security-ticker .shield{
+    color:var(--gold);
+}
+
+.security-ticker .live{
+    color:var(--green);
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.ticker-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 10px var(--green);
+    animation:pulse 1.6s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{opacity:.55;transform:scale(.9)}
+    50%{opacity:1;transform:scale(1.25)}
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:relative;
+    z-index:100;
+    background:rgba(6,17,31,.97);
+    border-bottom:1px solid rgba(212,175,55,.45);
+    box-shadow:0 8px 30px rgba(0,0,0,.22);
+}
+
+.navbar{
+    max-width:1280px;
+    min-height:72px;
+    margin:auto;
+    padding:9px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:18px;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    min-width:0;
+    cursor:pointer;
+}
+
+.logo-area img{
+    width:auto;
+    height:46px;
+    object-fit:contain;
+    background:transparent;
+    opacity:.98;
+    filter:drop-shadow(0 3px 8px rgba(0,0,0,.25));
+}
+
+.logo-area h1{
+    color:var(--gold-light);
+    font-size:1rem;
+    font-weight:900;
+    white-space:nowrap;
+}
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.nav-links a{
+    color:#dce5ee;
+    text-decoration:none;
+    padding:8px 10px;
+    border-radius:8px;
+    font-size:.82rem;
+    font-weight:700;
+}
+
+.nav-links a:hover{
+    color:var(--gold-light);
+    background:rgba(212,175,55,.08);
+}
+
+.cta-btn-nav{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:linear-gradient(135deg,var(--gold-light),var(--gold));
+    color:var(--primary);
+    text-decoration:none;
+    padding:9px 13px;
+    border-radius:9px;
+    font-size:.75rem;
+    font-weight:900;
+    box-shadow:0 6px 18px rgba(212,175,55,.2);
+    white-space:nowrap;
+}
+
+.cta-btn-nav:hover{
+    transform:translateY(-2px);
+    box-shadow:0 9px 25px rgba(212,175,55,.3);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    max-width:none;
+    margin:0;
+    min-height:570px;
+    padding:75px 18px 80px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(135deg,rgba(3,10,19,.98),rgba(10,31,52,.94)),
+        radial-gradient(circle at 50% 0%,rgba(212,175,55,.16),transparent 45%);
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border:1px solid rgba(212,175,55,.09);
+    border-radius:50%;
+    top:-250px;
+    left:50%;
+    transform:translateX(-50%);
+    box-shadow:
+        0 0 0 60px rgba(212,175,55,.025),
+        0 0 0 120px rgba(212,175,55,.018);
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:1px;
+    bottom:0;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    opacity:.4;
+}
+
+.hero-container{
+    width:100%;
+    max-width:900px;
+    position:relative;
+    z-index:2;
+}
+
+.hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:7px 15px;
+    border:1px solid rgba(212,175,55,.32);
+    border-radius:30px;
+    background:rgba(212,175,55,.09);
+    color:var(--gold-light);
+    font-size:.75rem;
+    font-weight:800;
+    box-shadow:0 5px 20px rgba(0,0,0,.12);
+}
+
+.hero-badge i{
+    font-size:.8rem;
+}
+
+.hero h2{
+    margin:20px 0 10px;
+    color:var(--gold-light);
+    font-size:clamp(2rem,5vw,3.5rem);
+    line-height:1.2;
+    font-weight:900;
+    letter-spacing:-1px;
+    text-shadow:0 5px 25px rgba(0,0,0,.3);
+}
+
+.hero-subtitle{
+    color:#fff;
+    font-size:1.05rem;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.hero p{
+    max-width:720px;
+    margin:0 auto 25px;
+    color:#c7d2de;
+    font-size:.92rem;
+    line-height:1.9;
+}
+
+.hero-actions{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.btn-gold,
+.btn-outline{
+    min-height:45px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    border-radius:9px;
+    padding:10px 18px;
+    text-decoration:none;
+    font-size:.82rem;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.btn-gold{
+    background:linear-gradient(135deg,var(--gold-light),var(--gold));
+    color:var(--primary);
+    box-shadow:0 8px 25px rgba(212,175,55,.2);
+}
+
+.btn-gold:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px rgba(212,175,55,.3);
+}
+
+.btn-outline{
+    border:1px solid rgba(255,255,255,.28);
+    background:rgba(255,255,255,.04);
+    color:#fff;
+}
+
+.btn-outline:hover{
+    border-color:var(--gold);
+    color:var(--gold-light);
+    background:rgba(212,175,55,.07);
+}
+
+/* HERO MINI STATS */
+
+.hero-stats{
+    max-width:700px;
+    margin:38px auto 0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.hero-stat{
+    padding:13px 8px;
+    border:1px solid rgba(255,255,255,.09);
+    background:rgba(255,255,255,.035);
+    border-radius:10px;
+    backdrop-filter:blur(8px);
+}
+
+.hero-stat strong{
+    display:block;
+    color:var(--gold-light);
+    font-size:1rem;
+    font-weight:900;
+}
+
+.hero-stat span{
+    color:#aebdcb;
+    font-size:.67rem;
+}
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
+
+section:not(.hero){
+    max-width:1220px;
+    margin:auto;
+    padding:65px 18px;
+}
+
+.section-title{
+    text-align:center;
+    max-width:720px;
+    margin:0 auto 30px;
+}
+
+.section-title .eyebrow{
+    color:var(--gold);
+    font-size:.7rem;
+    font-weight:900;
+    letter-spacing:.5px;
+    margin-bottom:3px;
+}
+
+.section-title h3{
+    color:var(--primary);
+    font-size:1.65rem;
+    line-height:1.35;
+    font-weight:900;
+    margin-bottom:6px;
+}
+
+.section-title p{
+    color:var(--muted);
+    font-size:.84rem;
+}
+
+/* =========================
+   SERVICES / PORTFOLIO
+========================= */
+
+.portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.portfolio-card{
+    position:relative;
+    overflow:hidden;
+    background:rgba(255,255,255,.94);
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:25px 18px;
+    text-align:center;
+    box-shadow:var(--shadow);
+    transition:.3s ease;
+}
+
+.portfolio-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    right:0;
+    width:100%;
+    height:3px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+
+.portfolio-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 20px 45px rgba(4,16,30,.12);
+    border-color:rgba(212,175,55,.35);
+}
+
+.icon-box{
+    width:58px;
+    height:58px;
+    margin:0 auto 14px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#eef3f7,#fff);
+    border:1px solid #e3e9ef;
+    color:var(--secondary);
+    font-size:1.5rem;
+}
+
+.portfolio-card h4{
+    color:var(--primary);
+    font-size:1rem;
+    font-weight:900;
+    margin-bottom:7px;
+}
+
+.portfolio-card p{
+    color:var(--muted);
+    font-size:.77rem;
+    line-height:1.75;
+}
+
+.portfolio-card.full-width{
+    grid-column:1/-1;
+    display:flex;
+    align-items:center;
+    text-align:right;
+    gap:18px;
+    padding:22px 25px;
+    background:
+        linear-gradient(135deg,#fff,#f7f9fb);
+}
+
+.portfolio-card.full-width .icon-box{
+    flex-shrink:0;
+    margin:0;
+    width:65px;
+    height:65px;
+    color:var(--gold);
+}
+
+/* =========================
+   COMMAND CENTER
+========================= */
+
+.security-command-center{
+    margin-top:35px;
+    position:relative;
+    overflow:hidden;
+    border-radius:18px;
+    padding:25px;
+    color:#fff;
+    background:
+        radial-gradient(circle at 90% 10%,rgba(212,175,55,.11),transparent 30%),
+        linear-gradient(135deg,#030b15,#0b1c30);
+    border:1px solid rgba(212,175,55,.22);
+    box-shadow:0 20px 50px rgba(0,0,0,.18);
+}
+
+.security-command-center::before{
+    content:"";
+    position:absolute;
+    width:200px;
+    height:200px;
+    border:1px solid rgba(16,185,129,.08);
+    border-radius:50%;
+    left:-100px;
+    bottom:-100px;
+}
+
+.command-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding-bottom:15px;
+    margin-bottom:17px;
+    border-bottom:1px solid rgba(255,255,255,.09);
+}
+
+.command-title{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:var(--gold-light);
+    font-size:1rem;
+    font-weight:900;
+}
+
+.live-badge{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:5px 10px;
+    border-radius:20px;
+    color:#6ee7b7;
+    background:rgba(16,185,129,.08);
+    border:1px solid rgba(16,185,129,.25);
+    font-size:.67rem;
+    font-weight:800;
+}
+
+.live-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 10px var(--green);
+    animation:pulse 1.5s infinite;
+}
+
+.command-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:11px;
+}
+
+.command-box{
+    text-align:center;
+    padding:17px 10px;
+    border-radius:11px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.075);
+}
+
+.command-box i{
+    color:var(--gold);
+    font-size:1.3rem;
+    margin-bottom:6px;
+}
+
+.command-box h5{
+    color:#b9c7d5;
+    font-size:.74rem;
+    margin-bottom:3px;
+}
+
+.command-box p{
+    color:#fff;
+    font-size:.83rem;
+    font-weight:900;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-section{
+    margin-top:25px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-right:5px solid var(--gold);
+    border-radius:16px;
+    padding:25px;
+    display:flex;
+    align-items:center;
+    gap:30px;
+    box-shadow:var(--shadow);
+}
+
+.about-content{
+    flex:1;
+}
+
+.about-content h3{
+    color:var(--primary);
+    font-size:1.25rem;
+    font-weight:900;
+    margin-bottom:7px;
+}
+
+.about-content p{
+    color:#536579;
+    font-size:.82rem;
+    line-height:1.8;
+}
+
+.about-seal{
+    width:150px;
+    flex-shrink:0;
+    text-align:center;
+}
+
+.about-seal img{
+    width:125px;
+    height:125px;
+    object-fit:contain;
+    filter:drop-shadow(0 8px 15px rgba(0,0,0,.12));
+}
+
+.about-seal span{
+    display:block;
+    margin-top:2px;
+    color:#758396;
+    font-size:.65rem;
+    font-weight:800;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-section{
+    padding-top:20px !important;
+}
+
+.contact-box{
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+    color:#fff;
+    border-radius:18px;
+    padding:42px 18px;
+    background:
+        radial-gradient(circle at 50% -20%,rgba(212,175,55,.17),transparent 45%),
+        linear-gradient(135deg,#06111f,#102a45);
+    border:1px solid rgba(212,175,55,.22);
+    box-shadow:0 20px 50px rgba(4,16,30,.18);
+}
+
+.contact-box h3{
+    color:var(--gold-light);
+    font-size:1.35rem;
+    font-weight:900;
+    margin-bottom:5px;
+}
+
+.contact-box > p{
+    color:#bdc9d5;
+    font-size:.78rem;
+}
+
+.contact-info{
+    margin-top:22px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:9px;
+}
+
+.contact-item{
+    min-height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:10px 14px;
+    border-radius:10px;
+    text-decoration:none;
+    color:#fff;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.1);
+    font-size:.76rem;
+    font-weight:800;
+}
+
+.contact-item:hover{
+    transform:translateY(-2px);
+    border-color:rgba(212,175,55,.5);
+    background:rgba(212,175,55,.08);
+}
+
+.contact-item i{
+    color:var(--gold);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#02070d;
+    color:#78899a;
+    text-align:center;
+    padding:22px 15px;
+    font-size:.72rem;
+    border-top:1px solid rgba(212,175,55,.14);
+}
+
+footer span{
+    color:var(--gold);
+    font-weight:800;
+}
+
+/* =========================
+   MODALS
+========================= */
+
+.modal-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    padding:12px;
+    justify-content:center;
+    align-items:center;
+    background:rgba(1,7,14,.86);
+    backdrop-filter:blur(7px);
+}
+
+.modal-content{
+    width:100%;
+    max-width:600px;
+    max-height:90vh;
+    overflow-y:auto;
+    position:relative;
+    background:#fff;
+    border-radius:16px;
+    padding:27px 21px 22px;
+    border-top:4px solid var(--gold);
+    box-shadow:0 25px 70px rgba(0,0,0,.35);
+    animation:modalIn .25s ease;
+}
+
+@keyframes modalIn{
+    from{opacity:0;transform:translateY(15px) scale(.98)}
+    to{opacity:1;transform:none}
+}
+
+.close-modal{
+    position:absolute;
+    top:10px;
+    left:10px;
+    width:31px;
+    height:31px;
+    border:0;
+    border-radius:50%;
+    cursor:pointer;
+    background:#f0f3f6;
+    color:var(--primary);
+}
+
+.close-modal:hover{
+    background:#e5e9ed;
+    transform:rotate(90deg);
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-group{
+    margin-bottom:13px;
+    text-align:right;
+}
+
+.form-group label{
+    display:block;
+    color:var(--primary);
+    font-size:.78rem;
+    font-weight:800;
+    margin-bottom:4px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    min-height:43px;
+    padding:9px 11px;
+    border:1px solid #d4dce5;
+    border-radius:9px;
+    outline:none;
+    background:#f8fafc;
+    color:var(--text);
+    font-size:.85rem;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--gold);
+    background:#fff;
+    box-shadow:0 0 0 3px rgba(212,175,55,.1);
+}
+
+.ai-extracted-box{
+    display:none;
+    margin-top:6px;
+    padding:9px 11px;
+    border-radius:8px;
+    background:#effcf5;
+    border:1px solid #b8efd0;
+    color:#166534;
+    font-size:.73rem;
+}
+
+.submit-btn{
+    width:100%;
+    min-height:45px;
+    margin-top:3px;
+    border:0;
+    border-radius:9px;
+    cursor:pointer;
+    color:#fff;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    font-size:.84rem;
+    font-weight:900;
+}
+
+.submit-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 8px 20px rgba(6,17,31,.2);
+}
+
+/* =========================
+   ADMIN
+========================= */
+
+#adminDashboardModal .modal-content{
+    max-width:1050px;
+    background:#091321;
+    color:#fff;
+    padding:20px 14px;
+}
+
+.dashboard-stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-bottom:22px;
+}
+
+.stat-card{
+    padding:15px 8px;
+    border-radius:10px;
+    text-align:center;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.stat-card h4{
+    color:var(--gold-light);
+    font-size:1.25rem;
+    font-weight:900;
+}
+
+.stat-card p{
+    color:#aebccc;
+    font-size:.68rem;
+}
+
+.table-responsive{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border-radius:9px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:760px;
+    font-size:.73rem;
+}
+
+th,td{
+    padding:10px;
+    text-align:right;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+th{
+    color:var(--gold-light);
+    background:rgba(255,255,255,.035);
+}
+
+td{
+    color:#d6e0e8;
+}
+
+.action-btns-group{
+    display:flex;
+    gap:4px;
+}
+
+.btn-promote,
+.btn-demote,
+.btn-fire{
+    border:0;
+    color:#fff;
+    padding:5px 8px;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:.65rem;
+    font-weight:800;
+}
+
+.btn-promote{background:#059669}
+.btn-demote{background:#d97706}
+.btn-fire{background:#dc2626}
+
+.btn-promote:hover,
+.btn-demote:hover,
+.btn-fire:hover{
+    filter:brightness(1.1);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+    .nav-links{
+        display:none;
+    }
+
+    .portfolio-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .portfolio-card.full-width{
+        grid-column:1/-1;
+    }
+}
+
+@media(max-width:650px){
+
+    .security-ticker{
+        font-size:.61rem;
+        min-height:30px;
+    }
+
+    .navbar{
+        min-height:62px;
+        padding:7px 10px;
+    }
+
+    .logo-area img{
+        height:39px;
+    }
+
+    .logo-area h1{
+        font-size:.78rem;
+    }
+
+    .cta-btn-nav{
+        padding:7px 9px;
+        font-size:.62rem;
+    }
+
+    .hero{
+        min-height:530px;
+        padding:60px 13px 55px;
+    }
+
+    .hero h2{
+        font-size:2rem;
+    }
+
+    .hero-subtitle{
+        font-size:.86rem;
+    }
+
+    .hero p{
+        font-size:.76rem;
+        line-height:1.85;
+    }
+
+    .hero-stats{
+        margin-top:28px;
+        gap:6px;
+    }
+
+    .hero-stat{
+        padding:10px 5px;
+    }
+
+    .hero-stat strong{
+        font-size:.83rem;
+    }
+
+    .hero-stat span{
+        font-size:.58rem;
+    }
+
+    section:not(.hero){
+        padding:45px 12px;
+    }
+
+    .section-title{
+        margin-bottom:22px;
+    }
+
+    .section-title h3{
+        font-size:1.3rem;
+    }
+
+    .portfolio-grid{
+        grid-template-columns:1fr;
+        gap:11px;
+    }
+
+    .portfolio-card.full-width{
+        grid-column:1;
+        flex-direction:column;
+        text-align:center;
+        padding:20px 15px;
+    }
+
+    .portfolio-card.full-width .icon-box{
+        margin:auto;
+    }
+
+    .security-command-center{
+        padding:19px 12px;
+        border-radius:14px;
+    }
+
+    .command-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .command-title{
+        font-size:.82rem;
+    }
+
+    .command-grid{
+        grid-template-columns:1fr;
+        gap:8px;
+    }
+
+    .command-box{
+        padding:13px 8px;
+    }
+
+    .about-section{
+        padding:20px 14px;
+        flex-direction:column;
+        text-align:center;
+        gap:12px;
+    }
+
+    .about-seal{
+        width:auto;
+    }
+
+    .contact-box{
+        padding:32px 12px;
+    }
+
+    .contact-box h3{
+        font-size:1.1rem;
+    }
+
+    .contact-info{
+        flex-direction:column;
+    }
+
+    .contact-item{
+        width:100%;
+    }
+
+    .dashboard-stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+/* تحسين الشاشات الصغيرة جدًا */
+
+@media(max-width:380px){
+
+    .logo-area h1{
+        display:none;
+    }
+
+    .cta-btn-nav{
+        font-size:.59rem;
+    }
+
+    .hero h2{
+        font-size:1.75rem;
+    }
+
+    .hero-actions{
+        flex-direction:column;
+    }
+
+    .btn-gold,
+    .btn-outline{
+        width:100%;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- شريط حالة التأمين الحي -->
-    <div class="security-ticker">
-        <i class="fa-solid fa-shield-halved" style="color: var(--gold-color);"></i>
-        حالة الطوارئ: <span><i class="fa-solid fa-circle" style="font-size: 6px;"></i> تأمين مشدد ومنظومة حراسة ذكية تعمل على مدار الساعة</span>
-    </div>
+<!-- =========================
+     SECURITY BAR
+========================= -->
 
-    <!-- الهيدر (ثابت ومن غير حركة مزعجة مع التصفح) -->
-    <header>
-        <div class="navbar">
-            <a href="#hero" class="logo-area" id="logoClicker">
-                <img src="logo.png" alt="شعار شركة فورت لاين للحراسة">
-                <h1>شركة فورت لاين للحراسة</h1>
+<div class="security-ticker">
+    <i class="fa-solid fa-shield-halved shield"></i>
+    <span>حالة الأمن:</span>
+    <span class="live">
+        <span class="ticker-dot"></span>
+        منظومة حراسة ومراقبة تعمل على مدار الساعة
+    </span>
+</div>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+    <div class="navbar">
+
+        <a href="#hero" class="logo-area" id="logoClicker">
+            <img src="logo.png" alt="شعار شركة فورت لاين للحراسة">
+            <h1>شركة فورت لاين للحراسة</h1>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#hero">الرئيسية</a></li>
+            <li><a href="#portfolio">خدماتنا</a></li>
+            <li>
+                <a href="#about" onclick="openAboutModal(event)">
+                    نبذة عنا
+                </a>
+            </li>
+            <li><a href="#contact">اتصل بنا</a></li>
+        </ul>
+
+        <a href="#" class="cta-btn-nav" onclick="openJobModal(event)">
+            <i class="fa-solid fa-user-shield"></i>
+            انضم لفريقنا
+        </a>
+
+    </div>
+</header>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section id="hero" class="hero">
+
+    <div class="hero-container">
+
+        <span class="hero-badge">
+            <i class="fa-solid fa-certificate"></i>
+            حلول أمنية متكاملة للمنشآت والقطاعات المختلفة
+        </span>
+
+        <h2>الثقة والأمان غايتنا</h2>
+
+        <div class="hero-subtitle">
+            حماية احترافية تبدأ بالتخطيط وتنتهي بالاطمئنان
+        </div>
+
+        <p>
+            نقدم أحدث الأساليب ورسم الخطط الأمنية المتكاملة لحماية منشأتك،
+            تحت إشراف نخبة من القادة والمتخصصين في الحراسات الخاصة،
+            مع الاهتمام بالتفاصيل وسرعة التعامل مع المواقف الأمنية.
+        </p>
+
+        <div class="hero-actions">
+
+            <a href="#contact" class="btn-gold">
+                <i class="fa-solid fa-file-shield"></i>
+                اطلب خطة تأمين
             </a>
-            <ul class="nav-links">
-                <li><a href="#hero">الرئيسية</a></li>
-                <li><a href="#portfolio">سابقة الأعمال</a></li>
-                <li><a href="#about" onclick="openAboutModal(event)">نبذة عن الشركة</a></li>
-                <li><a href="#contact">اتصل بنا</a></li>
-            </ul>
-            <a href="#" class="cta-btn-nav" onclick="openJobModal(event)"><i class="fa-solid fa-user-shield"></i> انضم لفريق الحراسة</a>
-        </div>
-    </header>
 
-    <!-- الواجهة الرئيسية -->
-    <section id="hero" class="hero">
-        <div class="hero-container">
-            <span class="hero-badge"><i class="fa-solid fa-certificate"></i> معتمدون رسمياً لتأمين المنشآت الحيوية والخاصة</span>
-            <h2>الثقة والأمان غايتنا</h2>
-            <p>
-                نقدم أحدث الأساليب ورسم الخطط الأمنية المتكاملة لحماية منشأتك تحت إشراف نخبة من القادة والمتخصصين في الحراسات الخاصة.
-            </p>
-            <div class="hero-actions">
-                <a href="#contact" class="btn-gold"><i class="fa-solid fa-file-shield"></i> اطلب خطة تأمين منشأتك</a>
-                <a href="#" class="btn-outline" onclick="openJobModal(event)"><i class="fa-solid fa-id-card"></i> تقديم طلب فرد أمن</a>
+            <a href="#" class="btn-outline" onclick="openJobModal(event)">
+                <i class="fa-solid fa-id-card"></i>
+                تقديم طلب فرد أمن
+            </a>
+
+        </div>
+
+        <div class="hero-stats">
+
+            <div class="hero-stat">
+                <strong>24/7</strong>
+                <span>متابعة أمنية مستمرة</span>
             </div>
-        </div>
-    </section>
 
-    <!-- سابقة الأعمال -->
-    <section id="portfolio">
-        <div class="section-title">
-            <h3>سابقة أعمالنا الأمنية</h3>
-            <p>ثقة أصحاب المنشآت.. دروع حماية تفخر بها شركة فورت لاين للحراسة</p>
+            <div class="hero-stat">
+                <strong>360°</strong>
+                <span>تغطية أمنية شاملة</span>
+            </div>
+
+            <div class="hero-stat">
+                <strong>احترافية</strong>
+                <span>خطط أمنية مدروسة</span>
+            </div>
+
         </div>
 
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
+    </div>
+
+</section>
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section id="portfolio">
+
+    <div class="section-title">
+
+        <div class="eyebrow">
+            FORT LINE SECURITY
+        </div>
+
+        <h3>خدمات وحلول أمنية متكاملة</h3>
+
+        <p>
+            خبرة ميدانية وتنظيم أمني مصمم وفق طبيعة كل منشأة واحتياجاتها.
+        </p>
+
+    </div>
+
+    <div class="portfolio-grid">
+
+        <div class="portfolio-card">
+
+            <div class="icon-box">
                 <i class="fa-solid fa-building-shield"></i>
-                <h4>القطاع السكني</h4>
-                <p>تأمين المجمعات السكنية واتحادات الشاغليين والأبراج بدقة عالية.</p>
             </div>
-            <div class="portfolio-card">
-                <i class="fa-solid fa-briefcase"></i>
-                <h4>القطاع التجاري</h4>
-                <p>حراسة المقرات الإدارية، الشركات، والمراكز التجارية.</p>
-            </div>
-            <div class="portfolio-card">
-                <i class="fa-solid fa-industry"></i>
-                <h4>القطاع الصناعي</h4>
-                <p>تأمين المصانع والمستودعات وضبط عمليات الشحن.</p>
-            </div>
-            <div class="portfolio-card full-width">
-                <i class="fa-solid fa-shield-cat"></i>
-                <div>
-                    <h4>تأمين الفعاليات والمؤتمرات الكبرى</h4>
-                    <p>إعداد وتنفيذ خطط التأمين الميداني للاحتفالات والمعارض الكبرى باستخدام أحدث التقنيات وفرق التدخل السريع.</p>
-                </div>
-            </div>
-        </div>
 
-        <!-- غرفة العمليات الأمنية الذكية -->
-        <div class="security-command-center">
-            <div class="command-header">
-                <div class="command-title">
-                    <i class="fa-solid fa-satellite-dish"></i> غرفة العمليات والتحكم المركزي الذكي (AI-SOC)
-                </div>
-                <div class="live-badge">
-                    <div class="live-dot"></div> نظام مراقبة نشط 100%
-                </div>
-            </div>
-            <div class="command-grid">
-                <div class="command-box">
-                    <i class="fa-solid fa-radar"></i>
-                    <h5>الرادار الأمني الميداني</h5>
-                    <p>تغطية كاملة بنطاق 360°</p>
-                </div>
-                <div class="command-box">
-                    <i class="fa-solid fa-bolt"></i>
-                    <h5>استجابة الطوارئ</h5>
-                    <p>&lt; 3 دقائق لتدخل الفرق</p>
-                </div>
-                <div class="command-box">
-                    <i class="fa-solid fa-fingerprint"></i>
-                    <h5>البصمة والتحقق الذكي</h5>
-                    <p>أنظمة تحكم آلي متطورة</p>
-                </div>
-            </div>
-        </div>
+            <h4>القطاع السكني</h4>
 
-        <!-- عن الشركة والختم -->
-        <div class="about-section" id="about">
-            <div class="about-content">
-                <h3>معايير التميز والاحترافية الأمنية</h3>
-                <p>
-                    تُعد شركة فورت لاين للحراسة صرحاً رائداً يدمج بين الخبرات البشرية والأمنية المؤهلة، وتوظيف التقنيات لضمان تحقيق أعلى معايير الجودة والأمان لحمايتكم.
-                </p>
-                <button class="btn-gold" style="margin-top: 10px; padding: 6px 14px; font-size: 0.8rem;" onclick="openAboutModal(event)">قراءة النبذة التفصيلية</button>
-            </div>
-            <div class="about-seal">
-                <img src="seal.png" alt="ختم شركة فورت لاين للحراسة الرسمي">
-                <span style="font-size: 0.72rem; color: #64748b; margin-top: 4px; font-weight: 700;">ختم الاعتماد الرسمي</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- النوافذ المنبثقة -->
-    <div id="aboutModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="color: var(--primary-color); margin-bottom: 10px; font-weight: 900; font-size: 1.1rem;"><i class="fa-solid fa-shield-dog" style="color:var(--gold-color);"></i> نبذة تفصيلية عن شركة فورت لاين للحراسة</h3>
-            <p style="color: #475569; margin-bottom: 10px; font-size: 0.84rem; line-height: 1.6;">
-                تأسست شركة فورت لاين للحراسة لتكون العلامة الفارقة في مجال الأمن والحراسات الخاصة وتأمين المنشآت الحيوية. نحن نؤمن بأن الأمان منظومة متكاملة تبدأ بدراسة المخاطر وتنتهي بالسيطرة التامة.
+            <p>
+                تأمين المجمعات السكنية والأبراج واتحادات الشاغلين
+                وتنظيم عمليات الدخول والخروج.
             </p>
-        </div>
-    </div>
 
-    <!-- نافذة نموذج التقديم الذكي -->
-    <div id="jobModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="color: var(--primary-color); margin-bottom: 4px; text-align: center; font-weight: 900; font-size: 1.1rem;"><i class="fa-solid fa-user-lock" style="color:var(--gold-color);"></i> انضم إلى فريق شركة فورت لاين للحراسة</h3>
-            <p style="text-align: center; color: #64748b; margin-bottom: 12px; font-size: 0.78rem;">ادخل رقمك القومي وسيقوم النظام الذكي بتحليل البيانات أوتوماتيكياً</p>
-            
-            <form id="applicantForm" onsubmit="submitApplication(event)">
-                <div class="form-group">
-                    <label>الاسم بالكامل</label>
-                    <input type="text" id="appName" placeholder="أدخل اسمك ثلاثي" required>
-                </div>
-                <div class="form-group">
-                    <label>رقم البطاقة الشخصية (14 رقماً)</label>
-                    <input type="text" id="appNID" maxlength="14" placeholder="مثال: 3050502..." oninput="analyzeNationalID(this.value)" required>
-                    <div id="aiInfoBox" class="ai-extracted-box">
-                        <i class="fa-solid fa-robot"></i> <strong>تحليل النظام الذكي:</strong> <span id="aiResultText"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>رقم الهاتف / الواتساب</label>
-                    <input type="tel" id="appPhone" placeholder="010xxxxxxxx" required>
-                </div>
-                <div class="form-group">
-                    <label>موقف الخدمة العسكرية</label>
-                    <select id="appMilitary" required>
-                        <option value="">اختر الموقف العسكري</option>
-                        <option value="أدى الخدمة العسكرية">أدى الخدمة العسكرية</option>
-                        <option value="إعفاء نهائي أو مؤقت">إعفاء نهائي أو مؤقت</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>الوظيفة المتقدم إليها</label>
-                    <select id="appJob" required>
-                        <option value="">اختر الوظيفة المناسبة</option>
-                        <option value="فرد أمن وحراسة">فرد أمن وحراسة (منشآت)</option>
-                        <option value="مشرف موقع">مشرف موقع / قائد فريق</option>
-                        <option value="إداري أمني">وظائف إدارية</option>
-                    </select>
-                </div>
-                <button type="submit" class="submit-btn">إرسال طلب الانضمام</button>
-            </form>
         </div>
-    </div>
 
-    <!-- نافذة تسجيل دخول الإدارة -->
-    <div id="adminLoginModal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 340px; text-align: center;">
-            <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="color: var(--primary-color); margin-bottom: 6px; font-weight: 900; font-size: 1.1rem;"><i class="fa-solid fa-lock" style="color: var(--gold-color);"></i> دخول الإدارة</h3>
-            <p style="color: #64748b; font-size: 0.76rem; margin-bottom: 12px;">لوحة تحكم شركة فورت لاين للحراسة</p>
-            <form onsubmit="adminLogin(event)">
-                <div class="form-group" style="text-align: right;">
-                    <label>اسم المستخدم</label>
-                    <input type="text" id="adminUser" placeholder="أدخل اسم المستخدم" autocomplete="off" required>
-                </div>
-                <div class="form-group" style="text-align: right;">
-                    <label>كلمة المرور</label>
-                    <input type="password" id="adminPass" placeholder="أدخل كلمة المرور" autocomplete="new-password" required>
-                </div>
-                <button type="submit" class="submit-btn" style="margin-top: 4px;">دخول اللوحة</button>
-            </form>
-        </div>
-    </div>
+        <div class="portfolio-card">
 
-    <!-- نافذة لوحة التحكم مع صلاحيات كاملة -->
-    <div id="adminDashboardModal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
-                <h3 style="color: var(--gold-color); font-weight: 900; font-size: 1.05rem;"><i class="fa-solid fa-chart-line"></i> لوحة التحكم والإدارة الذكية</h3>
-                <button onclick="logoutAdmin()" style="background: #ef4444; color: #fff; border: none; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 0.75rem;">خروج</button>
+            <div class="icon-box">
+                <i class="fa-solid fa-briefcase"></i>
             </div>
 
-            <div class="dashboard-stats">
-                <div class="stat-card">
-                    <h4>7.7M</h4>
-                    <p>الواردات (ج.م)</p>
-                </div>
-                <div class="stat-card">
-                    <h4>1.2M</h4>
-                    <p>المصروفات (ج.م)</p>
-                </div>
-                <div class="stat-card">
-                    <h4>6.5M</h4>
-                    <p>صافي الأرباح</p>
-                </div>
-                <div class="stat-card" style="border-color: var(--gold-color);">
-                    <h4>الشركاء</h4>
-                    <p style="font-size: 0.68rem; color: #cbd5e1; margin-top: 2px;">م. محمد (50%) | الإدارة (50%)</p>
-                </div>
+            <h4>القطاع التجاري</h4>
+
+            <p>
+                حراسة الشركات والمقرات الإدارية والمراكز التجارية
+                مع تنظيم ومتابعة الحركة داخل المنشأة.
+            </p>
+
+        </div>
+
+        <div class="portfolio-card">
+
+            <div class="icon-box">
+                <i class="fa-solid fa-industry"></i>
             </div>
 
-            <h4 style="color: var(--gold-color); margin-bottom: 6px; font-weight: 800; font-size: 0.9rem;">إدارة الأفراد والطلبات الواردة (<span id="applicantCount">0</span>)</h4>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>الاسم</th>
-                            <th>الرقم القومي</th>
-                            <th>السن والمحافظة</th>
-                            <th>الهاتف</th>
-                            <th>الرتبة / الوظيفة الحالية</th>
-                            <th>إجراءات التحكم (ترقية / تنزيل / طرد)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="applicantsTableBody">
-                        <!-- تظهر البيانات هنا -->
-                    </tbody>
-                </table>
-            </div>
+            <h4>القطاع الصناعي</h4>
+
+            <p>
+                تأمين المصانع والمستودعات ومراقبة عمليات الدخول
+                والخروج والشحن والتفريغ.
+            </p>
+
         </div>
+
+        <div class="portfolio-card full-width">
+
+            <div class="icon-box">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+
+            <div>
+                <h4>تأمين الفعاليات والمؤتمرات الكبرى</h4>
+
+                <p>
+                    إعداد وتنفيذ خطط التأمين الميداني للفعاليات
+                    والاحتفالات والمعارض والمؤتمرات، مع تنظيم
+                    نقاط الدخول والحركة والاستجابة للمواقف الطارئة.
+                </p>
+            </div>
+
+        </div>
+
     </div>
 
-    <!-- التواصل (مع إرجاع الرقم الأرضي والمحمول بشكل شيك جداً) -->
-    <section id="contact">
-        <div class="contact-box">
-            <h3><i class="fa-solid fa-headset" style="color:var(--gold-color);"></i> تواصل معنا أو اطلب خطة تأمين منشأتك</h3>
-            <p>يسعدنا تلقي طلباتكم وحماية منشاتكم على مدار الساعة عبر قنوات الاتصال الرسمية</p>
-            <div class="contact-info">
-                <a href="https://maps.google.com/?q=كفر+الشيخ" target="_blank" class="contact-item">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>أبراج الصيانة - كفر الشيخ</span>
-                </a>
-                <a href="tel:0472333333" class="contact-item">
-                    <i class="fa-solid fa-phone-office"></i>
-                    <span>التليفون الأرضي: 0472333333</span>
-                </a>
-                <a href="tel:01080800759" class="contact-item">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <span>المحمول / واتساب: 01080800759</span>
-                </a>
+    <!-- COMMAND CENTER -->
+
+    <div class="security-command-center">
+
+        <div class="command-header">
+
+            <div class="command-title">
+                <i class="fa-solid fa-satellite-dish"></i>
+                غرفة العمليات والتحكم المركزي
             </div>
+
+            <div class="live-badge">
+                <span class="live-dot"></span>
+                منظومة متابعة نشطة
+            </div>
+
         </div>
-    </section>
 
-    <!-- الفوتر -->
-    <footer>
-        <p>جميع الحقوق محفوظة ©️ 2026 <span>شركة فورت لاين للحراسة</span> | الثقة والأمان غايتنا.</p>
-    </footer>
+        <div class="command-grid">
 
-    <!-- السكريبت -->
-    <script>
-        let logoClicks = 0;
-        document.getElementById('logoClicker').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            logoClicks++;
-            if (logoClicks === 4) {
-                logoClicks = 0;
-                document.getElementById('adminUser').value = '';
-                document.getElementById('adminPass').value = '';
-                document.getElementById('adminLoginModal').style.display = 'flex';
-            }
-            setTimeout(() => { logoClicks = 0; }, 3000);
-        });
+            <div class="command-box">
+                <i class="fa-solid fa-radar"></i>
+                <h5>الرصد الأمني</h5>
+                <p>تغطية ومتابعة ميدانية</p>
+            </div>
 
-        function openJobModal(e) { if(e) e.preventDefault(); document.getElementById('jobModal').style.display = 'flex'; }
-        function openAboutModal(e) { if(e) e.preventDefault(); document.getElementById('aboutModal').style.display = 'flex'; }
-        function closeModals() { document.querySelectorAll('.modal-overlay').forEach(modal => modal.style.display = 'none'); }
+            <div class="command-box">
+                <i class="fa-solid fa-bolt"></i>
+                <h5>الاستجابة للطوارئ</h5>
+                <p>سرعة التعامل مع البلاغات</p>
+            </div>
 
-        function analyzeNationalID(nid) {
-            const box = document.getElementById('aiInfoBox');
-            const txt = document.getElementById('aiResultText');
-            if (nid.length === 14 && /^\d+$/.test(nid)) {
-                let century = nid[0] === '2' ? 1900 : 2000;
-                let year = century + parseInt(nid.substr(1, 2));
-                let month = nid.substr(3, 2);
-                let day = nid.substr(5, 2);
-                let govCode = nid.substr(7, 2);
-                const govMap = {"01": "القاهرة", "02": "الإسكندرية", "11": "دمياط", "12": "الدقهلية", "13": "الشرقية", "14": "القليوبية", "15": "كفر الشيخ", "16": "الغربية", "18": "البحيرة", "21": "الجيزة"};
-                let govName = govMap[govCode] || "مصر";
-                let age = new Date().getFullYear() - year;
-                txt.innerHTML = `${day}/${month}/${year} | السن: ${age} سنة | ${govName}`;
-                box.style.display = 'block';
-            } else { box.style.display = 'none'; }
+            <div class="command-box">
+                <i class="fa-solid fa-fingerprint"></i>
+                <h5>التحقق والتحكم</h5>
+                <p>أنظمة متابعة متطورة</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ABOUT -->
+
+    <div class="about-section" id="about">
+
+        <div class="about-content">
+
+            <h3>
+                معايير التميز والاحترافية الأمنية
+            </h3>
+
+            <p>
+                تُعد شركة فورت لاين للحراسة صرحاً يدمج بين
+                الخبرات البشرية والأمنية المؤهلة وتوظيف التقنيات
+                الحديثة لتحقيق أعلى معايير الجودة والأمان.
+            </p>
+
+            <button
+                class="btn-gold"
+                style="margin-top:12px;border:0;"
+                onclick="openAboutModal(event)"
+            >
+                <i class="fa-solid fa-shield-halved"></i>
+                قراءة النبذة التفصيلية
+            </button>
+
+        </div>
+
+        <div class="about-seal">
+
+            <img
+                src="seal.png"
+                alt="ختم شركة فورت لاين للحراسة الرسمي"
+            >
+
+            <span>
+                ختم الاعتماد الرسمي
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     ABOUT MODAL
+========================= -->
+
+<div id="aboutModal" class="modal-overlay">
+
+    <div class="modal-content">
+
+        <button class="close-modal" onclick="closeModals()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <h3 style="color:var(--primary);margin-bottom:10px;font-weight:900;font-size:1.1rem;">
+            <i class="fa-solid fa-shield-halved" style="color:var(--gold);"></i>
+            نبذة عن شركة فورت لاين للحراسة
+        </h3>
+
+        <p style="color:#536579;font-size:.82rem;line-height:1.9;">
+            تأسست شركة فورت لاين للحراسة لتكون علامة مميزة
+            في مجال الأمن والحراسات الخاصة وتأمين المنشآت.
+            نحن نؤمن بأن الأمان منظومة متكاملة تبدأ بدراسة
+            المخاطر والتخطيط الجيد وتنتهي بالمتابعة المستمرة
+            والقدرة على التعامل مع مختلف المواقف.
+        </p>
+
+        <p style="color:#536579;font-size:.82rem;line-height:1.9;margin-top:10px;">
+            ونعمل على تقديم حلول أمنية تناسب طبيعة كل منشأة،
+            مع الاهتمام بالتدريب والانضباط وحسن التعامل
+            والالتزام بمعايير العمل الاحترافي.
+        </p>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     JOB MODAL
+========================= -->
+
+<div id="jobModal" class="modal-overlay">
+
+    <div class="modal-content">
+
+        <button class="close-modal" onclick="closeModals()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <h3 style="color:var(--primary);margin-bottom:3px;text-align:center;font-weight:900;font-size:1.1rem;">
+            <i class="fa-solid fa-user-shield" style="color:var(--gold);"></i>
+            انضم إلى فريق فورت لاين
+        </h3>
+
+        <p style="text-align:center;color:#718096;margin-bottom:15px;font-size:.74rem;">
+            أدخل بياناتك وسيقوم النظام بتحليل الرقم القومي تلقائياً
+        </p>
+
+        <form id="applicantForm" onsubmit="submitApplication(event)">
+
+            <div class="form-group">
+                <label>الاسم بالكامل</label>
+                <input
+                    type="text"
+                    id="appName"
+                    placeholder="أدخل اسمك ثلاثي"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    رقم البطاقة الشخصية (14 رقماً)
+                </label>
+
+                <input
+                    type="text"
+                    id="appNID"
+                    maxlength="14"
+                    inputmode="numeric"
+                    placeholder="مثال: 3050502..."
+                    oninput="analyzeNationalID(this.value)"
+                    required
+                >
+
+                <div id="aiInfoBox" class="ai-extracted-box">
+
+                    <i class="fa-solid fa-robot"></i>
+
+                    <strong>
+                        تحليل النظام الذكي:
+                    </strong>
+
+                    <span id="aiResultText"></span>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>رقم الهاتف / الواتساب</label>
+
+                <input
+                    type="tel"
+                    id="appPhone"
+                    inputmode="tel"
+                    placeholder="010xxxxxxxx"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>موقف الخدمة العسكرية</label>
+
+                <select id="appMilitary" required>
+
+                    <option value="">
+                        اختر الموقف العسكري
+                    </option>
+
+                    <option value="أدى الخدمة العسكرية">
+                        أدى الخدمة العسكرية
+                    </option>
+
+                    <option value="إعفاء نهائي أو مؤقت">
+                        إعفاء نهائي أو مؤقت
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>الوظيفة المتقدم إليها</label>
+
+                <select id="appJob" required>
+
+                    <option value="">
+                        اختر الوظيفة المناسبة
+                    </option>
+
+                    <option value="فرد أمن وحراسة">
+                        فرد أمن وحراسة
+                    </option>
+
+                    <option value="مشرف موقع">
+                        مشرف موقع / قائد فريق
+                    </option>
+
+                    <option value="إداري أمني">
+                        وظائف إدارية
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <i class="fa-solid fa-paper-plane"></i>
+                إرسال طلب الانضمام
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     ADMIN LOGIN
+========================= -->
+
+<div id="adminLoginModal" class="modal-overlay">
+
+    <div class="modal-content" style="max-width:350px;text-align:center;">
+
+        <button class="close-modal" onclick="closeModals()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <h3 style="color:var(--primary);margin-bottom:5px;font-weight:900;font-size:1.1rem;">
+            <i class="fa-solid fa-lock" style="color:var(--gold);"></i>
+            دخول الإدارة
+        </h3>
+
+        <p style="color:#718096;font-size:.72rem;margin-bottom:14px;">
+            لوحة تحكم شركة فورت لاين للحراسة
+        </p>
+
+        <form onsubmit="adminLogin(event)">
+
+            <div class="form-group">
+                <label>اسم المستخدم</label>
+                <input
+                    type="text"
+                    id="adminUser"
+                    placeholder="أدخل اسم المستخدم"
+                    autocomplete="off"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>كلمة المرور</label>
+                <input
+                    type="password"
+                    id="adminPass"
+                    placeholder="أدخل كلمة المرور"
+                    autocomplete="new-password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="submit-btn">
+                دخول لوحة التحكم
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     ADMIN DASHBOARD
+========================= -->
+
+<div id="adminDashboardModal" class="modal-overlay">
+
+    <div class="modal-content">
+
+        <button class="close-modal" onclick="closeModals()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:10px;
+            margin-bottom:17px;
+            padding-bottom:10px;
+            border-bottom:1px solid rgba(255,255,255,.1);
+        ">
+
+            <h3 style="
+                color:var(--gold-light);
+                font-weight:900;
+                font-size:1rem;
+            ">
+                <i class="fa-solid fa-chart-line"></i>
+                لوحة التحكم والإدارة
+            </h3>
+
+            <button
+                onclick="logoutAdmin()"
+                style="
+                    background:#dc2626;
+                    color:#fff;
+                    border:0;
+                    padding:5px 10px;
+                    border-radius:6px;
+                    cursor:pointer;
+                    font-size:.68rem;
+                    font-weight:800;
+                "
+            >
+                خروج
+            </button>
+
+        </div>
+
+        <div class="dashboard-stats">
+
+            <div class="stat-card">
+                <h4>7.7M</h4>
+                <p>الواردات (ج.م)</p>
+            </div>
+
+            <div class="stat-card">
+                <h4>1.2M</h4>
+                <p>المصروفات (ج.م)</p>
+            </div>
+
+            <div class="stat-card">
+                <h4>6.5M</h4>
+                <p>صافي الأرباح</p>
+            </div>
+
+            <div class="stat-card" style="border-color:var(--gold);">
+                <h4>الشركاء</h4>
+                <p>م. محمد 50% | الإدارة 50%</p>
+            </div>
+
+        </div>
+
+        <h4 style="
+            color:var(--gold-light);
+            margin-bottom:8px;
+            font-size:.85rem;
+        ">
+            إدارة الطلبات الواردة
+            (<span id="applicantCount">0</span>)
+        </h4>
+
+        <div class="table-responsive">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>الاسم</th>
+                        <th>الرقم القومي</th>
+                        <th>السن والمحافظة</th>
+                        <th>الهاتف</th>
+                        <th>الوظيفة</th>
+                        <th>إجراءات</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="applicantsTableBody"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section id="contact" class="contact-section">
+
+    <div class="contact-box">
+
+        <h3>
+            <i class="fa-solid fa-headset"></i>
+            تواصل معنا
+        </h3>
+
+        <p>
+            اطلب خطة تأمين منشأتك أو تواصل معنا عبر قنوات الاتصال الرسمية.
+        </p>
+
+        <div class="contact-info">
+
+            <a
+                href="https://maps.google.com/?q=كفر+الشيخ"
+                target="_blank"
+                class="contact-item"
+            >
+                <i class="fa-solid fa-location-dot"></i>
+                <span>أبراج الصيانة - كفر الشيخ</span>
+            </a>
+
+            <a
+                href="tel:0472333333"
+                class="contact-item"
+            >
+                <i class="fa-solid fa-phone"></i>
+                <span>0472333333</span>
+            </a>
+
+            <a
+                href="tel:01080800759"
+                class="contact-item"
+            >
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <span>01080800759</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        جميع الحقوق محفوظة ©️ 2026
+        <span>شركة فورت لاين للحراسة</span>
+        |
+        الثقة والأمان غايتنا.
+    </p>
+
+</footer>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+let logoClicks = 0;
+let logoTimer;
+
+/* =========================
+   ADMIN SECRET CLICK
+========================= */
+
+document.getElementById('logoClicker').addEventListener('click', function(e){
+
+    e.preventDefault();
+
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
+
+    logoClicks++;
+
+    clearTimeout(logoTimer);
+
+    logoTimer = setTimeout(function(){
+        logoClicks = 0;
+    },3000);
+
+    if(logoClicks === 4){
+
+        logoClicks = 0;
+
+        document.getElementById('adminUser').value = '';
+        document.getElementById('adminPass').value = '';
+
+        document.getElementById('adminLoginModal').style.display = 'flex';
+
+    }
+
+});
+
+/* =========================
+   MODALS
+========================= */
+
+function openJobModal(e){
+
+    if(e) e.preventDefault();
+
+    document.getElementById('jobModal').style.display = 'flex';
+
+}
+
+function openAboutModal(e){
+
+    if(e) e.preventDefault();
+
+    document.getElementById('aboutModal').style.display = 'flex';
+
+}
+
+function closeModals(){
+
+    document.querySelectorAll('.modal-overlay').forEach(function(modal){
+
+        modal.style.display = 'none';
+
+    });
+
+}
+
+window.addEventListener('click',function(event){
+
+    if(event.target.classList.contains('modal-overlay')){
+
+        closeModals();
+
+    }
+
+});
+
+document.addEventListener('keydown',function(e){
+
+    if(e.key === 'Escape'){
+
+        closeModals();
+
+    }
+
+});
+
+/* =========================
+   NATIONAL ID AI ANALYSIS
+========================= */
+
+function analyzeNationalID(nid){
+
+    const box = document.getElementById('aiInfoBox');
+    const txt = document.getElementById('aiResultText');
+
+    if(nid.length === 14 && /^\d+$/.test(nid)){
+
+        let century = nid[0] === '2' ? 1900 : 2000;
+
+        let year =
+            century +
+            parseInt(nid.substr(1,2));
+
+        let month =
+            nid.substr(3,2);
+
+        let day =
+            nid.substr(5,2);
+
+        let govCode =
+            nid.substr(7,2);
+
+        const govMap = {
+
+            "01":"القاهرة",
+            "02":"الإسكندرية",
+            "03":"بورسعيد",
+            "04":"السويس",
+            "11":"دمياط",
+            "12":"الدقهلية",
+            "13":"الشرقية",
+            "14":"القليوبية",
+            "15":"كفر الشيخ",
+            "16":"الغربية",
+            "17":"المنوفية",
+            "18":"البحيرة",
+            "19":"الإسماعيلية",
+            "21":"الجيزة",
+            "22":"بني سويف",
+            "23":"الفيوم",
+            "24":"المنيا",
+            "25":"أسيوط",
+            "26":"سوهاج",
+            "27":"قنا",
+            "28":"أسوان",
+            "29":"الأقصر",
+            "31":"شمال سيناء",
+            "32":"جنوب سيناء",
+            "33":"مطروح",
+            "34":"الوادي الجديد",
+            "35":"البحر الأحمر",
+            "88":"خارج الجمهورية"
+
+        };
+
+        let govName =
+            govMap[govCode] || "غير محددة";
+
+        let today =
+            new Date();
+
+        let age =
+            today.getFullYear() - year;
+
+        const birthdayPassed =
+            (today.getMonth()+1 > parseInt(month)) ||
+            (
+                today.getMonth()+1 === parseInt(month) &&
+                today.getDate() >= parseInt(day)
+            );
+
+        if(!birthdayPassed){
+            age--;
         }
 
-        function submitApplication(e) {
-            e.preventDefault();
-            let name = document.getElementById('appName').value;
-            let nid = document.getElementById('appNID').value;
-            let phone = document.getElementById('appPhone').value;
-            let military = document.getElementById('appMilitary').value;
-            let job = document.getElementById('appJob').value;
+        txt.innerHTML =
+            `${day}/${month}/${year} | السن: ${age} سنة | ${govName}`;
 
-            let year = (nid[0] === '2' ? 1900 : 2000) + parseInt(nid.substr(1, 2));
-            let age = new Date().getFullYear() - year;
-            let govCode = nid.substr(7, 2);
-            const govMap = {"01": "القاهرة", "02": "الإسكندرية", "11": "دمياط", "12": "الدقهلية", "13": "الشرقية", "14": "القليوبية", "15": "كفر الشيخ", "16": "الغربية", "18": "البحيرة", "21": "الجيزة"};
-            let gov = govMap[govCode] || "مصر";
+        box.style.display = 'block';
 
-            let newApplicant = { id: Date.now(), name, nid, details: `${age} سنة - ${gov}`, phone, job };
+    }else{
 
-            let applicants = JSON.parse(localStorage.getItem('fortline_applicants')) || [];
-            applicants.push(newApplicant);
-            localStorage.setItem('fortline_applicants', JSON.stringify(applicants));
+        box.style.display = 'none';
 
-            alert('تم إرسال طلبك بنجاح يا بطل!');
-            document.getElementById('applicantForm').reset();
-            document.getElementById('aiInfoBox').style.display = 'none';
-            closeModals();
-        }
+    }
 
-        function adminLogin(e) {
-            e.preventDefault();
-            let u = document.getElementById('adminUser').value.trim();
-            let p = document.getElementById('adminPass').value.trim();
-            if (u === 'zedan' && p === 'Mm252009') {
-                document.getElementById('adminLoginModal').style.display = 'none';
-                loadAdminDashboard();
-                document.getElementById('adminDashboardModal').style.display = 'flex';
-            } else { alert('خطأ في اسم المستخدم أو كلمة المرور!'); }
-        }
+}
 
-        function logoutAdmin() { document.getElementById('adminDashboardModal').style.display = 'none'; }
+/* =========================
+   SUBMIT APPLICATION
+========================= */
 
-        function loadAdminDashboard() {
-            let applicants = JSON.parse(localStorage.getItem('fortline_applicants')) || [];
-            document.getElementById('applicantCount').innerText = applicants.length;
-            let tbody = document.getElementById('applicantsTableBody');
-            tbody.innerHTML = '';
+function submitApplication(e){
 
-            if (applicants.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#94a3b8;">لا توجد عناصر مسجلة حالياً</td></tr>`;
-                return;
-            }
+    e.preventDefault();
 
-            applicants.forEach((app, index) => {
-                let tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${app.name}</td>
-                    <td>${app.nid}</td>
-                    <td>${app.details}</td>
-                    <td>${app.phone}</td>
-                    <td><strong style="color:var(--gold-color);">${app.job}</strong></td>
-                    <td>
-                        <div class="action-btns-group">
-                            <button class="btn-promote" onclick="changeRank(${index}, 'up')"><i class="fa-solid fa-arrow-up"></i> ترقية</button>
-                            <button class="btn-demote" onclick="changeRank(${index}, 'down')"><i class="fa-solid fa-arrow-down"></i> تنزيل</button>
-                            <button class="btn-fire" onclick="fireApplicant(${index})"><i class="fa-solid fa-user-xmark"></i> طرد</button>
-                        </div>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
+    let name =
+        document.getElementById('appName').value.trim();
 
-        function changeRank(index, direction) {
-            let applicants = JSON.parse(localStorage.getItem('fortline_applicants')) || [];
-            let ranks = ["فرد أمن ومراقبة", "مشرف موقع", "قائد قطاع أمني", "مدير عمليات"];
-            let currentJob = applicants[index].job;
-            let currentIdx = ranks.indexOf(currentJob);
-            if (currentIdx === -1) currentIdx = 0;
+    let nid =
+        document.getElementById('appNID').value.trim();
 
-            if (direction === 'up' && currentIdx < ranks.length - 1) {
-                applicants[index].job = ranks[currentIdx + 1];
-            } else if (direction === 'down' && currentIdx > 0) {
-                applicants[index].job = ranks[currentIdx - 1];
-            }
+    let phone =
+        document.getElementById('appPhone').value.trim();
 
-            localStorage.setItem('fortline_applicants', JSON.stringify(applicants));
-            loadAdminDashboard();
-        }
+    let military =
+        document.getElementById('appMilitary').value;
 
-        function fireApplicant(index) {
-            if (confirm('هل أنت متأكد من طرد وحذف هذا العنصر الأمني نهائياً؟')) {
-                let applicants = JSON.parse(localStorage.getItem('fortline_applicants')) || [];
-                applicants.splice(index, 1);
-                localStorage.setItem('fortline_applicants', JSON.stringify(applicants));
-                loadAdminDashboard();
-            }
-        }
+    let job =
+        document.getElementById('appJob').value;
 
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal-overlay')) { closeModals(); }
-        }
-    </script>
+    if(!/^\d{14}$/.test(nid)){
+
+        alert('من فضلك أدخل رقم قومي صحيح مكون من 14 رقماً.');
+
+        return;
+
+    }
+
+    let year =
+        (nid[0] === '2' ? 1900 : 2000) +
+        parseInt(nid.substr(1,2));
+
+    let month =
+        parseInt(nid.substr(3,2));
+
+    let day =
+        parseInt(nid.substr(5,2));
+
+    let govCode =
+        nid.substr(7,2);
+
+    const govMap = {
+
+        "01":"القاهرة",
+        "02":"الإسكندرية",
+        "03":"بورسعيد",
+        "04":"السويس",
+        "11":"دمياط",
+        "12":"الدقهلية",
+        "13":"الشرقية",
+        "14":"القليوبية",
+        "15":"كفر الشيخ",
+        "16":"الغربية",
+        "17":"المنوفية",
+        "18":"البحيرة",
+        "19":"الإسماعيلية",
+        "21":"الجيزة",
+        "22":"بني سويف",
+        "23":"الفيوم",
+        "24":"المنيا",
+        "25":"أسيوط",
+        "26":"سوهاج",
+        "27":"قنا",
+        "28":"أسوان",
+        "29":"الأقصر",
+        "31":"شمال سيناء",
+        "32":"جنوب سيناء",
+        "33":"مطروح",
+        "34":"الوادي الجديد",
+        "35":"البحر الأحمر",
+        "88":"خارج الجمهورية"
+
+    };
+
+    let gov =
+        govMap[govCode] || "غير محددة";
+
+    let today =
+        new Date();
+
+    let age =
+        today.getFullYear() - year;
+
+    if(
+        today.getMonth()+1 < month ||
+        (
+            today.getMonth()+1 === month &&
+            today.getDate() < day
+        )
+    ){
+        age--;
+    }
+
+    let newApplicant = {
+
+        id:Date.now(),
+
+        name:name,
+
+        nid:nid,
+
+        details:`${age} سنة - ${gov}`,
+
+        phone:phone,
+
+        military:military,
+
+        job:job,
+
+        createdAt:new Date().toLocaleString('ar-EG')
+
+    };
+
+    let applicants =
+        JSON.parse(
+            localStorage.getItem('fortline_applicants')
+        ) || [];
+
+    applicants.push(newApplicant);
+
+    localStorage.setItem(
+        'fortline_applicants',
+        JSON.stringify(applicants)
+    );
+
+    alert('تم إرسال طلبك بنجاح يا بطل!');
+
+    document.getElementById('applicantForm').reset();
+
+    document.getElementById('aiInfoBox').style.display = 'none';
+
+    closeModals();
+
+}
+
+/* =========================
+   ADMIN LOGIN
+========================= */
+
+function adminLogin(e){
+
+    e.preventDefault();
+
+    let u =
+        document.getElementById('adminUser').value.trim();
+
+    let p =
+        document.getElementById('adminPass').value.trim();
+
+    if(
+        u === 'zedan' &&
+        p === 'Mm252009'
+    ){
+
+        document.getElementById('adminLoginModal').style.display = 'none';
+
+        loadAdminDashboard();
+
+        document.getElementById('adminDashboardModal').style.display = 'flex';
+
+    }else{
+
+        alert('خطأ في اسم المستخدم أو كلمة المرور!');
+
+    }
+
+}
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logoutAdmin(){
+
+    document.getElementById(
+        'adminDashboardModal'
+    ).style.display = 'none';
+
+}
+
+/* =========================
+   ADMIN DASHBOARD
+========================= */
+
+function loadAdminDashboard(){
+
+    let applicants =
+        JSON.parse(
+            localStorage.getItem('fortline_applicants')
+        ) || [];
+
+    document.getElementById(
+        'applicantCount'
+    ).innerText = applicants.length;
+
+    let tbody =
+        document.getElementById(
+            'applicantsTableBody'
+        );
+
+    tbody.innerHTML = '';
+
+    if(applicants.length === 0){
+
+        tbody.innerHTML = `
+            <tr>
+                <td
+                    colspan="6"
+                    style="
+                        text-align:center;
+                        color:#94a3b8;
+                        padding:25px;
+                    "
+                >
+                    لا توجد طلبات مسجلة حالياً
+                </td>
+            </tr>
+        `;
+
+        return;
+
+    }
+
+    applicants.forEach(function(app,index){
+
+        let tr =
+            document.createElement('tr');
+
+        tr.innerHTML = `
+
+            <td>${escapeHTML(app.name)}</td>
+
+            <td>${escapeHTML(app.nid)}</td>
+
+            <td>${escapeHTML(app.details)}</td>
+
+            <td>${escapeHTML(app.phone)}</td>
+
+            <td>
+                <strong style="color:var(--gold-light);">
+                    ${escapeHTML(app.job)}
+                </strong>
+            </td>
+
+            <td>
+
+                <div class="action-btns-group">
+
+                    <button
+                        class="btn-promote"
+                        onclick="changeRank(${index},'up')"
+                    >
+                        <i class="fa-solid fa-arrow-up"></i>
+                        ترقية
+                    </button>
+
+                    <button
+                        class="btn-demote"
+                        onclick="changeRank(${index},'down')"
+                    >
+                        <i class="fa-solid fa-arrow-down"></i>
+                        تنزيل
+                    </button>
+
+                    <button
+                        class="btn-fire"
+                        onclick="fireApplicant(${index})"
+                    >
+                        <i class="fa-solid fa-user-xmark"></i>
+                        حذف
+                    </button>
+
+                </div>
+
+            </td>
+        `;
+
+        tbody.appendChild(tr);
+
+    });
+
+}
+
+/* =========================
+   RANK SYSTEM
+========================= */
+
+function changeRank(index,direction){
+
+    let applicants =
+        JSON.parse(
+            localStorage.getItem('fortline_applicants')
+        ) || [];
+
+    if(!applicants[index]) return;
+
+    const ranks = [
+
+        "فرد أمن وحراسة",
+
+        "مشرف موقع",
+
+        "قائد قطاع أمني",
+
+        "مدير عمليات"
+
+    ];
+
+    let currentJob =
+        applicants[index].job;
+
+    let currentIdx =
+        ranks.indexOf(currentJob);
+
+    if(currentIdx === -1){
+
+        currentIdx = 0;
+
+    }
+
+    if(
+        direction === 'up' &&
+        currentIdx < ranks.length - 1
+    ){
+
+        applicants[index].job =
+            ranks[currentIdx + 1];
+
+    }
+
+    else if(
+        direction === 'down' &&
+        currentIdx > 0
+    ){
+
+        applicants[index].job =
+            ranks[currentIdx - 1];
+
+    }
+
+    localStorage.setItem(
+        'fortline_applicants',
+        JSON.stringify(applicants)
+    );
+
+    loadAdminDashboard();
+
+}
+
+/* =========================
+   DELETE APPLICANT
+========================= */
+
+function fireApplicant(index){
+
+    if(
+        !confirm(
+            'هل أنت متأكد من حذف هذا الطلب نهائياً؟'
+        )
+    ){
+
+        return;
+
+    }
+
+    let applicants =
+        JSON.parse(
+            localStorage.getItem('fortline_applicants')
+        ) || [];
+
+    applicants.splice(index,1);
+
+    localStorage.setItem(
+        'fortline_applicants',
+        JSON.stringify(applicants)
+    );
+
+    loadAdminDashboard();
+
+}
+
+/* =========================
+   SAFE HTML
+========================= */
+
+function escapeHTML(value){
+
+    return String(value ?? '')
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
+
+}
+
+</script>
+
 </body>
 </html>
